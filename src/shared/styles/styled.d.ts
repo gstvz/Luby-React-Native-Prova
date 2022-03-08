@@ -9,6 +9,7 @@ declare module 'styled-components' {
       background_secondary: string,
       background_tertiary: string,
       numberButton: string,
+      placeholder: string,
       titles: string,
       text: string
     };
