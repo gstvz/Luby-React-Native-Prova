@@ -6,6 +6,7 @@ type ActionButtonTextProps = {
 }
 
 export const Container = styled.View`
+marginBottom: 40px;
 `
 
 export const Content = styled.View`
