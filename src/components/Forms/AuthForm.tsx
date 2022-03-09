@@ -3,6 +3,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../shared/schemas/loginSchema";
 import * as S from "./styles";
+import { loginUser } from "../../shared/services/auth/loginUser";
 
 type Props = {
   onSignUpPress: () => void;
@@ -19,11 +20,16 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginInputs>({
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLogin: SubmitHandler<LoginInputs> = (data) => console.warn(data);
+  const handleLogin: SubmitHandler<LoginInputs> = async(loginData) => {
+    const response = await loginUser(loginData);
+    console.warn(response);
+    // dispatch action that fires loginUser;
+    // implement an useEffect that checks if the user is authenticated and redirects him;
+  }
 
   return (
     <S.Container>
