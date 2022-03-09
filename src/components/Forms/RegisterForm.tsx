@@ -1,7 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "./styles";
 
-export const RegisterForm = () => {
+type Props = {
+  onBackPress: () => void
+}
+
+export const RegisterForm = ({ onBackPress }: Props) => {
   return (
     <S.Container >
       <S.Content>
@@ -17,7 +21,7 @@ export const RegisterForm = () => {
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton>
+      <S.ActionButton onPress={onBackPress}>
         <S.ActionButtonText titles >
           <Ionicons name="arrow-back" size={32} />
           Back

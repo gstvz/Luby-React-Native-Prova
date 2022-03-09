@@ -1,14 +1,19 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "./styles";
 
-export const AuthForm = () => {
+type Props = {
+  onSignUpPress: () => void;
+  onForgotPress: () => void
+}
+
+export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
   return (
     <S.Container>
       <S.Content>
         <S.FormInput placeholder="Email" />
         <S.FormInput placeholder="Password" />
         <S.ActionContainer>
-          <S.ActionButton>
+          <S.ActionButton onPress={onForgotPress}>
             <S.PasswordButton>I forgot my password</S.PasswordButton>
           </S.ActionButton>
           <S.ActionButton>
@@ -19,7 +24,7 @@ export const AuthForm = () => {
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton>
+      <S.ActionButton onPress={onSignUpPress}>
         <S.ActionButtonText titles >
           Sign Up
           <Ionicons name="arrow-forward" size={32} />
