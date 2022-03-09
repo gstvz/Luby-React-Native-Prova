@@ -28,6 +28,13 @@ export const FormInput = styled.TextInput`
   padding: 16px;
 `
 
+export const InvalidFormInput = styled.Text`
+  color: red;
+  fontFamily: ${props => props.theme.fonts.italic_400}
+  marginLeft: 16px;
+  marginTop: 4px;
+`
+
 export const ActionContainer = styled.View`
   backgroundColor: ${props => props.theme.colors.background_tertiary};
   padding: 20px;
@@ -35,7 +42,7 @@ export const ActionContainer = styled.View`
 
 export const PasswordButton = styled.Text`
   color: #C1C1C1;
-  fontFamily: ${props => props.theme.fonts.italic_400};
+  fontFamily: ${props => props.theme.fonts.italic_400};;
   marginBottom: 10px;
   textAlign: right;
 `
