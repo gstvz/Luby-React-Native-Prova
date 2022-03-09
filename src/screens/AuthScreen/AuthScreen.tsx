@@ -1,15 +1,16 @@
-import { View } from "react-native";
 import { AuthHeader } from "../../components/AuthHeader/AuthHeader";
 import { AuthForm } from "../../components/Forms/AuthForm";
+import { RegisterForm } from "../../components/Forms/RegisterForm";
+import { ResetForm } from "../../components/Forms/ResetForm";
+import * as S from './styles';
 
 export const AuthScreen = () => {
   return (
-    <View style={{
-      alignItems: "center",
-      padding: 24
-    }}>
-      <AuthHeader screen="Authentication" />
-      <AuthForm />
-    </View>
+    <S.Container>
+      <S.Content>
+        <AuthHeader screen="Authentication" />
+        <AuthForm />
+      </S.Content>
+    </S.Container>
   );
 }
