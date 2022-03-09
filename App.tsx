@@ -7,7 +7,7 @@ import {
 } from "@expo-google-fonts/roboto";
 import AppLoading from "expo-app-loading";
 import { ThemeProvider } from "styled-components";
-import { AuthScreen } from "./src/screens/AuthScreen/AuthScreen";
+import { Container } from "./src/navigation/Container";
 import { theme } from "./src/shared/styles/theme";
 
 export default function App() {
@@ -24,7 +24,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AuthScreen />
+      <Container />
     </ThemeProvider>
   );
 }
