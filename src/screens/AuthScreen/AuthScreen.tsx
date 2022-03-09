@@ -1,15 +1,31 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthHeader } from "../../components/AuthHeader/AuthHeader";
 import { AuthForm } from "../../components/Forms/AuthForm";
-import { RegisterForm } from "../../components/Forms/RegisterForm";
-import { ResetForm } from "../../components/Forms/ResetForm";
 import * as S from './styles';
 
-export const AuthScreen = () => {
+type RootStackParamList = {
+  Auth: undefined;
+  Register: undefined;
+  Reset: undefined;
+}
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Auth'>;
+
+export const AuthScreen = ({ navigation }: Props) => {
+
+  const handleSignUpNavigate = () => {
+    navigation.navigate('Register')
+  };
+
+  const handleResetNavigate = () => {
+    navigation.navigate('Reset')
+  };
+
   return (
     <S.Container>
       <S.Content>
         <AuthHeader screen="Authentication" />
-        <AuthForm />
+        <AuthForm onSignUpPress={handleSignUpNavigate} onForgotPress={handleResetNavigate} />
       </S.Content>
     </S.Container>
   );
