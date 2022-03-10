@@ -5,7 +5,7 @@ import { AppDrawer } from './AppDrawer';
 export const Container = () => {
   return (
     <NavigationContainer>
-      <AppDrawer />
+      <AuthStack />
     </NavigationContainer>
   )
 }
