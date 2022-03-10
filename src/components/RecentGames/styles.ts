@@ -11,7 +11,7 @@ export const Title = styled.Text`
   fontSize: 30px;
 `
 
-export const Content = styled.View`
+export const FiltersWrapper = styled.View`
   padding: 10px;
 `
 
@@ -30,8 +30,12 @@ export const GameButtonsContainer = styled.View`
   width: 380px;
 `
 
+export const RecentGamesWrapper = styled.View`
+  height: 300px;
+  marginTop: 10px;
+`
+
 export const RecentGamesList = styled.FlatList`
-  width: 360px;
 `
 
 export const Game = styled.View`

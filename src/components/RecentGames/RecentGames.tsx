@@ -1,4 +1,4 @@
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { GameButton } from "../GameButton/GameButton";
 import * as S from "./styles";
 
@@ -29,16 +29,17 @@ export const RecentGames = () => {
   return (
     <S.Container>
       <S.Title>RECENT GAMES</S.Title>
-      <S.Content>
+      <S.FiltersWrapper>
         <S.FiltersTitle>Filters</S.FiltersTitle>
         <S.GameButtonsContainer>
           <GameButton />
           <GameButton />
           <GameButton />
         </S.GameButtonsContainer>
-      </S.Content>
-      <S.Content>
+      </S.FiltersWrapper>
+      <S.RecentGamesWrapper>
         <S.RecentGamesList 
+          showsVerticalScrollIndicator={false}
           data={DATA}
           renderItem={({ item }) => (
             <S.Game>
@@ -48,7 +49,7 @@ export const RecentGames = () => {
             </S.Game>
           )}
         />
-      </S.Content>
+      </S.RecentGamesWrapper>
     </S.Container>
   )
 }
