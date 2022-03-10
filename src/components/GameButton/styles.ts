@@ -6,7 +6,7 @@ export const Button = styled.View`
   borderColor: black;
   borderRadius: 100px;
   height: 40px;
-  margin: 2px;
+  margin: 6px;
   padding: 8px;
   width: 100px;
 `
