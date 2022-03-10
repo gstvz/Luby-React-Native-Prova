@@ -5,6 +5,8 @@ export const Button = styled.View`
   border: 2px solid;
   borderColor: black;
   borderRadius: 100px;
+  height: 40px;
+  margin: 2px;
   padding: 8px;
   width: 100px;
 `
