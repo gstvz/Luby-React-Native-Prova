@@ -3,11 +3,8 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../shared/schemas/loginSchema";
 import * as S from "./styles";
-import { loginUser } from "../../shared/services/auth/loginUser";
-import { postUserData } from "../../store/auth/thunk";
-import { useDispatch, useSelector } from "react-redux";
-import { UserData, UserState } from "../../shared/types/user";
-import { Alert } from "react-native";
+import { postUserData } from "../../store/user/thunk";
+import { useDispatch } from "react-redux";
 
 type Props = {
   onSignUpPress: () => void;
@@ -20,8 +17,6 @@ type LoginInputs = {
 };
 
 export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
-  const isAuthenticated = useSelector((state: UserState) => state.user.isAuthenticated);
-
   const dispatch = useDispatch();
   const {
     control,
@@ -33,7 +28,6 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
 
   const handleLogin: SubmitHandler<LoginInputs> = async(loginData) => {
     dispatch(postUserData(loginData));
-    console.log(isAuthenticated);
   }
 
   return (
