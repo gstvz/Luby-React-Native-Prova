@@ -2,24 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { UserData } from "../../shared/types/user";
 
 const initialState: UserData = {
-  isAuthenticated: false,
-  user: {
-    id: null,
-    email: null,
-    token: null,
-    expires_at: null,
-  },
-  userBets: [
-    {
-      choosen_numbers: "",
-      created_at: "",
-      game_id: 0,
-      id: 0,
-      price: 0,
-      type: { id: 0, type: ""},
-      user_id: 0,
-    }
-  ]  
+  user: null,
+  userBets: null
 }
 
 export const userSlice = createSlice({
@@ -33,8 +17,6 @@ export const userSlice = createSlice({
         token: action.payload.token,
         expires_at: action.payload.expires_at
       };
-
-      state.isAuthenticated = true;
       state.user = user;
     }
   }

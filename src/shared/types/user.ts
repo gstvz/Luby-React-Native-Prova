@@ -1,12 +1,11 @@
 export type UserData = {
-  isAuthenticated: boolean;
   user: {
-    id: number | null;
-    email: string | null;
-    token: string | null;
-    expires_at: string | null;
-  };
-  userBets: UserBets;  
+    id: number;
+    email: string;
+    token: string;
+    expires_at: string;
+  } | null;
+  userBets: UserBets | null;  
 }
 
 export type UserBets = {
@@ -18,10 +17,6 @@ export type UserBets = {
   type: { id: number; type: string };
   user_id: number;
 }[];
-
-export type UserState = {
-  user: UserData;
-}
 
 export type LoginData = {
   email?: string;
