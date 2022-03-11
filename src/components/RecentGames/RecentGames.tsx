@@ -1,55 +1,24 @@
-import { Text, View } from "react-native";
-import { GameButton } from "../GameButton/GameButton";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { GamesState } from "../../shared/types/games";
+import { getGamesData } from "../../store/games/thunk";
+import { Filter } from "../Filter/Filter";
+import { GamesList } from "../GamesList/GamesList";
 import * as S from "./styles";
 
-const DATA = [
-  {
-    numbers: "01, 02,04,05,06,07,09,15,17,20,21,22,23,24,25",
-    dateAndPrice: "30/11/2020 - (R$ 2,50)",
-    game: "Megasena"
-  },
-  {
-    numbers: "01, 02,04,05,06,07,09,15,17,20,21,22,23,24,25",
-    dateAndPrice: "30/11/2020 - (R$ 2,50)",
-    game: "Megasena"
-  },
-  {
-    numbers: "01, 02,04,05,06,07,09,15,17,20,21,22,23,24,25",
-    dateAndPrice: "30/11/2020 - (R$ 2,50)",
-    game: "Megasena"
-  },
-  {
-    numbers: "01, 02,04,05,06,07,09,15,17,20,21,22,23,24,25",
-    dateAndPrice: "30/11/2020 - (R$ 2,50)",
-    game: "Megasena"
-  }
-]
-
 export const RecentGames = () => {
+  const dispatch = useDispatch();
+  const games = useSelector((state: GamesState) => state.games);
+
+  useEffect(() => {
+    dispatch(getGamesData());
+  }, []);  
+
   return (
     <S.Container>
       <S.Title>RECENT GAMES</S.Title>
-      <S.FiltersWrapper>
-        <S.FiltersTitle>Filters</S.FiltersTitle>
-        <S.GameButtonsContainer>
-          <GameButton />
-          <GameButton />
-          <GameButton />
-        </S.GameButtonsContainer>
-      </S.FiltersWrapper>
-      <S.RecentGamesWrapper>
-        <S.RecentGamesList 
-          showsVerticalScrollIndicator={false}
-          data={DATA}
-          renderItem={({ item }) => (
-            <S.Game>
-              <S.GameNumbers>{item.numbers}</S.GameNumbers>
-              <S.GameDateAndPrice>{item.dateAndPrice}</S.GameDateAndPrice>
-              <S.GameName>{item.game}</S.GameName>
-            </S.Game>
-          )}
-        />
-      </S.RecentGamesWrapper>
+      <Filter />
+      <GamesList />
     </S.Container>
   )
 }
