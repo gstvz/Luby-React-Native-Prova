@@ -18,6 +18,10 @@ export type UserBets = {
   user_id: number;
 }[];
 
+export type UserState = {
+  user: UserData;
+}
+
 export type LoginData = {
   email?: string;
   password?: string;
