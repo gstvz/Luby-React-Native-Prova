@@ -6,9 +6,11 @@ import {
   Roboto_700Bold_Italic
 } from "@expo-google-fonts/roboto";
 import AppLoading from "expo-app-loading";
+import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { Container } from "./src/navigation/Container";
 import { theme } from "./src/shared/styles/theme";
+import { store } from "./src/store/store";
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -23,9 +25,11 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Container />      
+      </ThemeProvider>
+    </Provider>
   );
 }
 
