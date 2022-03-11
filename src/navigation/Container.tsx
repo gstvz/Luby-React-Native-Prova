@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { UserState } from '../shared/types/user';
 
 export const Container = () => {
-  const isAuthenticated = useSelector((state: UserState) => state.user.isAuthenticated);
+  const isUserLoggedIn = useSelector((state: UserState) => state.user.user);
 
   return (
     <NavigationContainer>
-      {isAuthenticated ? <AppDrawer /> : <AuthStack />}
+      {isUserLoggedIn ? <AppDrawer /> : <AuthStack />}
     </NavigationContainer>
   )
 }
