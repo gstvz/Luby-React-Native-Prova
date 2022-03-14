@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GameData } from "../../shared/types/games";
+import { GameData } from "@types";
 
 const initialState: GameData = {
   min_cart_value: 0,

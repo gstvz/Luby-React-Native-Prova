@@ -1,4 +1,4 @@
-import { GameType } from "../../shared/types/games";
+import { GameType } from "@types";
 import { GameButton } from "../GameButton/GameButton";
 import * as S from "./styles";
 
