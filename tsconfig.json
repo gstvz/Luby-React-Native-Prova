@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@types": ["./src/shared/types/index"],
+      "@shared/*": ["./src/shared/*"],
     },
     "strict": true
   }

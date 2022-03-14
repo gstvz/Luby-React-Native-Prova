@@ -1,6 +1,6 @@
 import { formatDate } from "../../shared/helpers/formatDate";
 import { formatToBRL } from "../../shared/helpers/formatToBRL";
-import { UserBets } from "@types";
+import { UserBets } from "@shared/types";
 import * as S from "./styles";
 
 type Props = {

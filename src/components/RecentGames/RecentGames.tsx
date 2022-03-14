@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GamesState, UserState } from "@types";
+import { GamesState, UserState } from "@shared/types";
 import { getGamesData } from "../../store/games/thunk";
 import { getUserBets } from "../../store/user/thunk";
 import { Filter } from "../Filter/Filter";
