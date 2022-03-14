@@ -18,6 +18,9 @@ export const userSlice = createSlice({
         expires_at: action.payload.expires_at
       };
       state.user = user;
+    },
+    setUserBets(state, action) {
+      state.userBets = action.payload;
     }
   }
 })
