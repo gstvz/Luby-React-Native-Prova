@@ -1,5 +1,4 @@
-import { formatDate } from "../../shared/helpers/formatDate";
-import { formatToBRL } from "../../shared/helpers/formatToBRL";
+import { formatDate, formatToBRL } from "@shared/helpers";
 import { UserBets } from "@shared/types";
 import * as S from "./styles";
 
