@@ -1,4 +1,4 @@
-import { gamesActions } from "./gamesSlice";
+import { gamesActions } from "./index";
 import { listGames } from "@shared/services/games/listGames";
 
 export const getGamesData = () => {

@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { Container } from "./src/navigation/Container";
 import { theme } from "./src/shared/styles/theme";
-import { store } from "./src/store/store";
+import { store } from "@store/";
 
 export default function App() {
   let [fontsLoaded] = useFonts({

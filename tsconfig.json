@@ -5,6 +5,7 @@
     "paths": {
       "@components": ["./src/components"],
       "@shared/*": ["./src/shared/*"],
+      "@store/*": ["./src/store/*"]
     },
     "strict": true
   }
