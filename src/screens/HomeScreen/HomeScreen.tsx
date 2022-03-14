@@ -1,6 +1,5 @@
 import * as S from "./styles";
-import { Logo } from "../../components/Logo/Logo";
-import { RecentGames } from "../../components/RecentGames/RecentGames";
+import { Logo, RecentGames } from "@components";
 
 export const HomeScreen = () => {
   return (

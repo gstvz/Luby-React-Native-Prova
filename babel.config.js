@@ -10,6 +10,7 @@ module.exports = function (api) {
           root: ["./src"],
           extensions: [".ts", ".tsx", ".jsx", ".js", ".json"],
           alias: {
+            "@components": "./src/components",
             "@shared": "./src/shared"
           },
         },

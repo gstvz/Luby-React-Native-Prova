@@ -1,5 +1,5 @@
 import { GameType } from "@shared/types";
-import { GameButton } from "../GameButton/GameButton";
+import { GameButton } from "../GameButton";
 import * as S from "./styles";
 
 type Props = {

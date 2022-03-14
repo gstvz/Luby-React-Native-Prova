@@ -1,52 +1,38 @@
+import { Ionicons } from "@expo/vector-icons";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../../shared/schemas/registerSchema";
-import { Ionicons } from "@expo/vector-icons";
-import * as S from "./styles";
-import { registerUser } from "../../shared/services/user/registerUser";
+import { loginSchema } from "../../../shared/schemas/loginSchema";
+import * as S from "../styles";
+import { postUserData } from "../../../store/user/thunk";
+import { useDispatch } from "react-redux";
 
 type Props = {
-  onBackPress: () => void;
+  onSignUpPress: () => void;
+  onForgotPress: () => void;
 };
 
-type Inputs = {
-  name: string;
+type LoginInputs = {
   email: string;
   password: string;
 };
 
-export const RegisterForm = ({ onBackPress }: Props) => {
+export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
+  const dispatch = useDispatch();
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>({
-    resolver: yupResolver(registerSchema),
+  } = useForm<LoginInputs>({
+    resolver: yupResolver(loginSchema),
   });
 
-  const handleRegister: SubmitHandler<Inputs> = async(registerData) => {
-    const response = await registerUser(registerData);
-    // dispatch action that fires registerUser;
-    // navigate user back to auth screen;
+  const handleLogin: SubmitHandler<LoginInputs> = async(loginData) => {
+    dispatch(postUserData(loginData));
   }
 
   return (
     <S.Container>
       <S.Content>
-        <Controller
-          control={control}
-          render={({ field: { onChange, value } }) => (
-            <S.FormInput
-              placeholder="Name"
-              onChangeText={(value) => onChange(value)}
-              value={value}
-            />
-          )}
-          name="name"
-        />
-        {errors.name && (
-          <S.InvalidFormInput>{errors.name.message}</S.InvalidFormInput>
-        )}
         <Controller
           control={control}
           render={({ field: { onChange, value } }) => (
@@ -78,18 +64,21 @@ export const RegisterForm = ({ onBackPress }: Props) => {
           <S.InvalidFormInput>{errors.password.message}</S.InvalidFormInput>
         )}
         <S.ActionContainer>
-          <S.ActionButton onPress={handleSubmit(handleRegister)}>
+          <S.ActionButton onPress={onForgotPress}>
+            <S.PasswordButton>I forgot my password</S.PasswordButton>
+          </S.ActionButton>
+          <S.ActionButton onPress={handleSubmit(handleLogin)}>
             <S.ActionButtonText primary>
-              Register
+              Log In
               <Ionicons name="arrow-forward" size={32} />
             </S.ActionButtonText>
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton onPress={onBackPress}>
+      <S.ActionButton onPress={onSignUpPress}>
         <S.ActionButtonText titles>
-          <Ionicons name="arrow-back" size={32} />
-          Back
+          Sign Up
+          <Ionicons name="arrow-forward" size={32} />
         </S.ActionButtonText>
       </S.ActionButton>
     </S.Container>
