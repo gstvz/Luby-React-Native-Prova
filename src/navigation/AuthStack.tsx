@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AuthScreen, RegisterScreen, ResetScreen } from "@screens";
+import { AuthScreen, ChangeScreen, RegisterScreen, ResetScreen } from "@screens";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +19,10 @@ export const AuthStack = () => {
       <Stack.Screen 
         name="Reset" 
         component={ResetScreen}
+      />
+      <Stack.Screen 
+        name="Change" 
+        component={ChangeScreen}
       />
     </Stack.Navigator>
   );

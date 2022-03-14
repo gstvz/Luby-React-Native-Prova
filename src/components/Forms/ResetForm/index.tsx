@@ -7,13 +7,14 @@ import { resetPassword } from "@shared/services/auth/resetPassword";
 
 type Props = {
   onBackPress: () => void;
+  onSendLink: () => void;
 };
 
 type Input = {
   email: string;
 };
 
-export const ResetForm = ({ onBackPress }: Props) => {
+export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
   const {
     control,
     handleSubmit,
@@ -24,9 +25,9 @@ export const ResetForm = ({ onBackPress }: Props) => {
 
   const handleReset: SubmitHandler<Input> = async(userEmail) => {
     const response = await resetPassword(userEmail);
-    console.warn(response);
-    // call reset password service;
-    // navigate user to next page to change password;
+    if(response?.status === 200) {
+      onSendLink();
+    }
   }
 
   return (
