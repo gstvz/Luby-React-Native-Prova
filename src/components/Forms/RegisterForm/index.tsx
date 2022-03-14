@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../../../shared/schemas/registerSchema";
+import { registerSchema } from "@shared/schemas";
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "../styles";
 import { registerUser } from "../../../shared/services/user/registerUser";
