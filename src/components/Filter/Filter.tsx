@@ -1,14 +1,19 @@
+import { GameType } from "../../shared/types/games";
 import { GameButton } from "../GameButton/GameButton";
 import * as S from "./styles";
 
-export const Filter = () => {
+type Props = {
+  types: GameType;
+};
+
+export const Filter = ({ types }: Props) => {
   return (
     <S.FiltersWrapper>
       <S.FiltersTitle>Filters</S.FiltersTitle>
       <S.GameButtonsContainer>
-        <GameButton />
-        <GameButton />
-        <GameButton />
+        {types.map((game) => 
+          <GameButton type={game.type} color={game.color} />
+        )}
       </S.GameButtonsContainer>
     </S.FiltersWrapper>
   );

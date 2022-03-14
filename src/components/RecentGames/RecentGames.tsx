@@ -17,7 +17,7 @@ export const RecentGames = () => {
   return (
     <S.Container>
       <S.Title>RECENT GAMES</S.Title>
-      <Filter />
+      <Filter types={games} />
       <GamesList />
     </S.Container>
   )

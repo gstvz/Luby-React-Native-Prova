@@ -1,9 +1,13 @@
 import styled from "styled-components/native";
 
-export const Button = styled.View`
-  backgroundColor: #01AC66;
+type ButtonProps = {
+  color: string;
+}
+
+export const Button = styled.View<ButtonProps>`
+  backgroundColor: ${props => props.color};
   border: 2px solid;
-  borderColor: black;
+  borderColor: ${props => props.color};
   borderRadius: 100px;
   height: 40px;
   margin: 6px;
@@ -12,6 +16,7 @@ export const Button = styled.View`
 `
 
 export const ButtonTitle = styled.Text`
+  color: #fff;
   fontFamily: ${props => props.theme.fonts.italic_700}
   textAlign: center;
 `

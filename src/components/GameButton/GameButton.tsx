@@ -1,9 +1,14 @@
 import * as S from "./styles";
 
-export const GameButton = () => {
+type Props = {
+  type: string;
+  color: string;
+}
+
+export const GameButton = ({ type, color }: Props) => {
   return (
-    <S.Button>
-      <S.ButtonTitle>GameButton</S.ButtonTitle>
+    <S.Button color={color}>
+      <S.ButtonTitle>{type}</S.ButtonTitle>
     </S.Button>
   )
 }
