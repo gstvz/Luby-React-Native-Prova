@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "@shared/schemas";
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "../styles";
-import { registerUser } from "../../../shared/services/user/registerUser";
+import { registerUser } from "@shared/services/user/registerUser";
 
 type Props = {
   onBackPress: () => void;
@@ -26,7 +26,6 @@ export const RegisterForm = ({ onBackPress }: Props) => {
 
   const handleRegister: SubmitHandler<Inputs> = async(registerData) => {
     const response = await registerUser(registerData);
-    // dispatch action that fires registerUser;
     // navigate user back to auth screen;
   }
 

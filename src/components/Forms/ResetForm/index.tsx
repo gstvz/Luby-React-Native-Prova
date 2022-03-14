@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "../styles";
 import { resetSchema } from "@shared/schemas";
-import { resetPassword } from "../../../shared/services/auth/resetPassword";
+import { resetPassword } from "@shared/services/auth/resetPassword";
 
 type Props = {
   onBackPress: () => void;
