@@ -10,7 +10,7 @@ export type UserData = {
 export const registerUser = async (userData: UserData) => {
   try {
     const response = await api
-      .post("user/creat", userData)
+      .post("user/create", userData)
 
     if(response.status === 200) {
       Alert.alert("User registered!");
