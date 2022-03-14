@@ -1,3 +1,5 @@
+import { formatDate } from "../../shared/helpers/formatDate";
+import { formatToBRL } from "../../shared/helpers/formatToBRL";
 import { UserBets } from "../../shared/types/user";
 import * as S from "./styles";
 
@@ -15,7 +17,7 @@ export const GamesList = ({ bets }: Props) => {
         renderItem={({ item }) => (
           <S.Game>
             <S.GameNumbers>{item.choosen_numbers}</S.GameNumbers>
-            <S.GameDateAndPrice>{item.created_at} - R${item.price}</S.GameDateAndPrice>
+            <S.GameDateAndPrice>{formatDate(item.created_at)} - {formatToBRL(item.price)}</S.GameDateAndPrice>
             <S.GameName>{item.type.type}</S.GameName>
           </S.Game>
         )}
