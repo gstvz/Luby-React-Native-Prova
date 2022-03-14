@@ -7,6 +7,7 @@ import { registerUser } from "@shared/services/user/registerUser";
 
 type Props = {
   onBackPress: () => void;
+  onRegister: () => void;
 };
 
 type Inputs = {
@@ -15,7 +16,7 @@ type Inputs = {
   password: string;
 };
 
-export const RegisterForm = ({ onBackPress }: Props) => {
+export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
   const {
     control,
     handleSubmit,
@@ -26,7 +27,10 @@ export const RegisterForm = ({ onBackPress }: Props) => {
 
   const handleRegister: SubmitHandler<Inputs> = async(registerData) => {
     const response = await registerUser(registerData);
-    // navigate user back to auth screen;
+    
+    if(response?.status === 200) {
+      onRegister();
+    }
   }
 
   return (

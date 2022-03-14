@@ -1,4 +1,5 @@
 import { api } from "@shared/services";
+import { Alert } from "react-native";
 
 export type UserData = {
   name: string;
@@ -7,6 +8,16 @@ export type UserData = {
 };
 
 export const registerUser = async (userData: UserData) => {
-  const response = await api
-    .post("user/create", userData)
+  try {
+    const response = await api
+      .post("user/creat", userData)
+
+    if(response.status === 200) {
+      Alert.alert("User registered!");
+    }
+
+    return response;
+  } catch (error) {
+    Alert.alert(error instanceof Error ? error.message : "Unknown error occurred!")
+  }
 };

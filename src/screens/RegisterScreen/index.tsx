@@ -14,11 +14,15 @@ export const RegisterScreen = ({ navigation }: Props) => {
     navigation.goBack();
   };
 
+  const handleRegisterNavigate = () => {
+    navigation.popToTop();
+  }
+
   return (
     <S.Container>
       <S.Content>
         <AuthHeader screen="Registration" />
-        <RegisterForm onBackPress={handleBackNavigate} />
+        <RegisterForm onBackPress={handleBackNavigate} onRegister={handleRegisterNavigate} />
       </S.Content>
     </S.Container>
   );
