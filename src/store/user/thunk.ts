@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { loginUser } from "../../shared/services/auth/loginUser";
-import { listBet } from "../../shared/services/bets/listBet";
-import { LoginData } from "@types";
+import { loginUser } from "@shared/services/auth/loginUser";
+import { listBet } from "@shared/services/bets/listBet";
+import { LoginData } from "@shared/types/user";
 import { userActions } from "./userSlice";
 
 export const postUserData = (loginData: LoginData) => {

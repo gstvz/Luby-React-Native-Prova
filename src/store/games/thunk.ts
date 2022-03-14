@@ -1,5 +1,5 @@
 import { gamesActions } from "./gamesSlice";
-import { listGames } from "../../shared/services/games/listGames"
+import { listGames } from "@shared/services/games/listGames";
 
 export const getGamesData = () => {
   return async(dispatch: Function) => {

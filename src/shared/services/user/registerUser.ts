@@ -1,4 +1,4 @@
-import { api } from "../api";
+import { api } from "@shared/services";
 
 export type UserData = {
   name: string;

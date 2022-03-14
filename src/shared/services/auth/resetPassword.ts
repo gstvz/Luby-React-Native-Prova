@@ -1,4 +1,4 @@
-import { api } from "../api";
+import { api } from "@shared/services";
 
 export const resetPassword = async (userEmail: { email: string }) => {
   const response = await api.post("reset", userEmail).then((res) => {

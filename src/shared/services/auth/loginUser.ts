@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import { LoginData } from "@shared/types";
-import { api } from "../api";
+import { api } from "@shared/services";
 
 export const loginUser = async (loginData: LoginData) => {
   try {

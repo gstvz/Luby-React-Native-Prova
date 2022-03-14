@@ -1,5 +1,5 @@
 import { Alert } from "react-native";
-import { api } from "../api";
+import { api } from "@shared/services";
 
 export const listBet = async() => {
   try {
