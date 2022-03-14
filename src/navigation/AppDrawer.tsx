@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { HomeScreen } from "../screens/HomeScreen/HomeScreen";
+import { HomeScreen } from "@screens";
 const Drawer = createDrawerNavigator();
 
 export const AppDrawer = () => {

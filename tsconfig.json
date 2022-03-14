@@ -4,6 +4,7 @@
     "baseUrl": "./",
     "paths": {
       "@components": ["./src/components"],
+      "@screens": ["./src/screens"],
       "@shared/*": ["./src/shared/*"],
       "@store/*": ["./src/store/*"]
     },
