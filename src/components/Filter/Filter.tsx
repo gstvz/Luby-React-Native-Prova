@@ -12,7 +12,7 @@ export const Filter = ({ types }: Props) => {
       <S.FiltersTitle>Filters</S.FiltersTitle>
       <S.GameButtonsContainer>
         {types.map((game) => 
-          <GameButton type={game.type} color={game.color} />
+          <GameButton key={game.id} type={game.type} color={game.color} />
         )}
       </S.GameButtonsContainer>
     </S.FiltersWrapper>
