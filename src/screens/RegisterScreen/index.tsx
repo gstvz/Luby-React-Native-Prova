@@ -1,6 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { AuthHeader } from "@components";
-import { RegisterForm } from "../../components/Forms/RegisterForm";
+import { AuthHeader, RegisterForm } from "@components";
 import * as S from './styles';
 
 type RootStackParamList = {

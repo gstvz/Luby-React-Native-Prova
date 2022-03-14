@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "@shared/schemas";
 import * as S from "../styles";
-import { postUserData } from "../../../store/user/thunk";
+import { postUserData } from "@store/user/thunk";
 import { useDispatch } from "react-redux";
 
 type Props = {
