@@ -1,37 +1,24 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { GamesState, UserState } from "@shared/types";
-import { getGamesData } from "@store/games/thunk";
-import { getUserBets } from "@store/user/thunk";
+import { GameType, UserBets } from "@shared/types";
 import { GamesList, Filter } from "@components";
 import * as S from "./styles";
 
-export const RecentGames = () => {
-  const dispatch = useDispatch();
-  const games = useSelector((state: GamesState) => state.games.types);
-  const userBets = useSelector((state: UserState) => state.user.userBets);
-  const [selectedGames, setSelectedGames] = useState<string[]>([]);
+type Props = {
+  games:  GameType;
+  selectedGames: string[];
+  bets: UserBets | null;
+  handleGameFilter: (type: string) => void;
+}
 
-  useEffect(() => {
-    dispatch(getGamesData());
-  }, []);
-
-  useEffect(() => {
-    const params = selectedGames.length > 0 ?
-      `?type%5B%5D=${selectedGames.join("&type%5B%5D=")}`
-      : "";
-    dispatch(getUserBets(params));
-  }, [selectedGames]);
-
+export const RecentGames = ({ games, selectedGames, bets, handleGameFilter}: Props) => {
   return (
     <S.Container>
       <S.Title>RECENT GAMES</S.Title>
       <Filter 
         types={games} 
+        handleGameFilter={handleGameFilter}
         selectedGames={selectedGames}
-        setSelectedGames={setSelectedGames}
       />
-      <GamesList bets={userBets} />
+      <GamesList bets={bets} />
     </S.Container>
   )
 }
