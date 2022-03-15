@@ -1,4 +1,4 @@
-import { Bet, Filter, Logo } from "@components";
+import { Bet, Filter, Logo, NumbersButtons } from "@components";
 import { GamesState, GameType } from "@shared/types";
 import { gamesActions } from "@store/games";
 import { getGamesData } from "@store/games/thunk";
@@ -34,6 +34,7 @@ export const BetScreen = () => {
         handleGameFilter={handleGameFilter}
         isActive={checkIfGameIsActive}
       />
+      <NumbersButtons />
     </S.Container>
   )
 }
