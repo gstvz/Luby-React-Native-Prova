@@ -3,7 +3,16 @@ import { GameData } from "@shared/types";
 
 const initialState: GameData = {
   min_cart_value: 0,
-  types: []
+  types: [],
+  activeGame: {
+    id: 0,
+    type: "",
+    description: "",
+    range: 0,
+    price: 0,
+    max_number: 0,
+    color: ""
+  }
 }
 
 export const gamesSlice = createSlice({
@@ -13,6 +22,10 @@ export const gamesSlice = createSlice({
     getGames(state, action) {
       state.min_cart_value = action.payload.min_cart_value;
       state.types = action.payload.types;
+      state.activeGame = action.payload.types[0];
+    },
+    setActiveGame(state, action) {
+      state.activeGame = action.payload.selectedGame;
     }
   }
 })

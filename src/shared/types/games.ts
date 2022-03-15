@@ -6,11 +6,12 @@ export type GameType = {
   price: number;
   max_number: number;
   color: string;
-}[]
+}
 
 export type GameData = {
   min_cart_value: number,
-  types: GameType
+  types: GameType[],
+  activeGame: GameType
 };
 
 export type GamesState = {
