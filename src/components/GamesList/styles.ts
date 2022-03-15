@@ -1,5 +1,9 @@
 import styled from "styled-components/native"
 
+type GameProps = {
+  borderColor: string;
+}
+
 export const RecentGamesWrapper = styled.View`
   height: 300px;
   marginTop: 10px;
@@ -8,8 +12,8 @@ export const RecentGamesWrapper = styled.View`
 export const RecentGamesList = styled.FlatList`
 `
 
-export const Game = styled.View`
-  borderLeftColor: #01AC66;
+export const Game = styled.View<GameProps>`
+  borderLeftColor: ${props => props.borderColor};
   borderLeftWidth: 2px;
   paddingLeft: 8px;
   marginBottom: 12px;
