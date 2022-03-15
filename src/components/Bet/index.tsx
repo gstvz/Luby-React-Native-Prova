@@ -1,11 +1,15 @@
 import * as S from "./styles";
 
-export const Bet = () => {
+type Props = {
+  activeGame: string;
+}
+
+export const Bet = ({ activeGame }: Props) => {
   return (
     <S.Container>
       <S.Title>
         <S.NewBet>NEW BET </S.NewBet>
-        <S.GameName>FOR MEGA-SENA</S.GameName>
+        <S.GameName>FOR {activeGame}</S.GameName>
       </S.Title>
     </S.Container>
   )
