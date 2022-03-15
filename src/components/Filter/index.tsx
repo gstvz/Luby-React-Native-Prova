@@ -3,12 +3,12 @@ import { GameButton } from "../GameButton";
 import * as S from "./styles";
 
 type Props = {
-  types: GameType;
-  handleGameFilter: (type: string) => void;
-  selectedGames: string[];
+  types: GameType[];
+  handleGameFilter: (param: any) => void;
+  isActive: (param: any) => boolean;
 };
 
-export const Filter = ({ types, selectedGames, handleGameFilter }: Props) => {
+export const Filter = ({ types, handleGameFilter, isActive }: Props) => {
   return (
     <S.FiltersWrapper>
       <S.FiltersTitle>Filters</S.FiltersTitle>
@@ -18,8 +18,8 @@ export const Filter = ({ types, selectedGames, handleGameFilter }: Props) => {
             key={game.id}
             type={game.type}
             color={game.color}
-            isActive={selectedGames.includes(game.type)}
-            handleButtonClick={() => handleGameFilter(game.type)}
+            isActive={isActive(game)}
+            handleButtonClick={() => handleGameFilter(game)}
           />
         ))}
       </S.GameButtonsContainer>

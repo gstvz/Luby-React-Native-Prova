@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GamesState, UserState } from "@shared/types";
+import { GamesState, GameType, UserState } from "@shared/types";
 import { getGamesData } from "@store/games/thunk";
 import { getUserBets } from "@store/user/thunk";
-import { Logo, RecentGames } from "@components";
+import { Filter, GamesList, Logo } from "@components";
 import * as S from "./styles";
 
 export const HomeScreen = () => {
@@ -23,8 +23,8 @@ export const HomeScreen = () => {
     dispatch(getUserBets(params));
   }, [selectedGames]);
 
-  const handleGameFilter = (type: string) => {
-    const selectedGame = type;
+  const handleGameFilter = (game: GameType) => {
+    const selectedGame = game.type;
 
     if (selectedGames.includes(selectedGame)) {
       setSelectedGames((prevSelectedGames) => {
@@ -40,15 +40,20 @@ export const HomeScreen = () => {
     });    
   };
 
+  const checkIfGameIsActive = (game: GameType) => {
+    return selectedGames.includes(game.type);
+  }
+
   return (
     <S.Container>
       <Logo />
-      <RecentGames 
-        games={games} 
-        selectedGames={selectedGames}
-        bets={userBets}
+      <S.Title>RECENT GAMES</S.Title>
+      <Filter 
+        types={games} 
         handleGameFilter={handleGameFilter}
+        isActive={checkIfGameIsActive}
       />
+      <GamesList bets={userBets} />
     </S.Container>
   )
 }
