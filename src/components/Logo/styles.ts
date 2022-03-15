@@ -2,14 +2,8 @@ import styled from "styled-components/native";
 
 export const Container = styled.View`
   alignItems: center;
+  marginBottom: 10px;
 `
-
-/*
-  borderBottomColor: ${props => props.theme.colors.primary};
-  borderBottomWidth: 3px;
-  borderBottomLeftRadius: 6px;
-  borderBottomRightRadius: 6px;
-*/
 
 export const Title = styled.Text`
   color: ${props => props.theme.colors.titles};
