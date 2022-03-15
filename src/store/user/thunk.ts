@@ -15,9 +15,9 @@ export const postUserData = (loginData: LoginData) => {
   }
 }
 
-export const getUserBets = () => {
+export const getUserBets = (params: string) => {
   return async (dispatch: Function) => {
-    const bets = await listBet();
+    const bets = await listBet(params);
     dispatch(userActions.setUserBets(bets));
   }
 }

@@ -2,12 +2,18 @@ import styled from "styled-components/native";
 
 type ButtonProps = {
   color: string;
+  isActive: boolean;
 }
 
-export const Button = styled.View<ButtonProps>`
-  backgroundColor: ${props => props.color};
+type TextProps = {
+  color: string;
+  isActive: boolean;
+}
+
+export const Button = styled.Pressable<ButtonProps>`
+  backgroundColor: ${({ isActive, color }) => isActive ? color : "#fff" };
   border: 2px solid;
-  borderColor: ${props => props.color};
+  borderColor: ${({ color }) => color};
   borderRadius: 100px;
   height: 40px;
   margin: 6px;
@@ -15,8 +21,8 @@ export const Button = styled.View<ButtonProps>`
   width: 100px;
 `
 
-export const ButtonTitle = styled.Text`
-  color: #fff;
-  fontFamily: ${props => props.theme.fonts.italic_700}
+export const ButtonTitle = styled.Text<TextProps>`
+  color: ${({ isActive, color }) => isActive ? "#fff" : color};
+  fontFamily: ${({ theme }) => theme.fonts.italic_700}
   textAlign: center;
 `
