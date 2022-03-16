@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { HomeScreen, BetScreen } from "@screens";
+import { HomeScreen, BetScreen, CartScreen } from "@screens";
 const Drawer = createDrawerNavigator();
 
 export const AppDrawer = () => {
@@ -16,7 +16,7 @@ export const AppDrawer = () => {
       />
       {/* <Drawer.Screen name="Account" component={} /> */}
       <Drawer.Screen name="Bet" component={BetScreen} />
-      {/*<Drawer.Screen name="Cart" component={} /> */}
+      <Drawer.Screen name="Cart" component={CartScreen} />
     </Drawer.Navigator>
   );
 };
