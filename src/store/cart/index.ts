@@ -1,18 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CartState } from "@shared/types/cart";
+import { Bets } from "@shared/types/cart";
 
-const initialState: CartState = {
-  cart: {
-    games: []
-  }
-}
+const initialState: Bets = {
+  bets: []
+};
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addGameToCart(state, action) {
-      state.cart.games = [...state.cart.games, action.payload];
+      state.bets = [...state.bets, action.payload];
     }
   }
 })

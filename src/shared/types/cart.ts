@@ -1,11 +1,11 @@
 export type Bet = {
-    game_id: string;
-    numbers: number[];
+  game_id: number;
+  numbers: number[];
 };
 
 export type Bets = {
-  games: Bet[];
-}
+  bets: Bet[];
+};
 
 export type CartState = {
   cart: Bets;
