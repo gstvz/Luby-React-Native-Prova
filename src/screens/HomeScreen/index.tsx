@@ -49,6 +49,7 @@ export const HomeScreen = () => {
       <Logo />
       <S.Title>RECENT GAMES</S.Title>
       <Filter 
+        title="Filters"
         types={games} 
         handleGameFilter={handleGameFilter}
         isActive={checkIfGameIsActive}

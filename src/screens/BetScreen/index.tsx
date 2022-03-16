@@ -33,6 +33,7 @@ export const BetScreen = () => {
         <S.GameName>FOR {activeGame.type.toUpperCase()}</S.GameName>
       </S.Title>
       <Filter
+        title="Choose a game"
         types={games}
         handleGameFilter={handleGameFilter}
         isActive={checkIfGameIsActive}
