@@ -1,5 +1,11 @@
 import styled from "styled-components/native";
 
+type ButtonProps = {
+  color: string;
+  onPress: (number: number) => void;
+  isSelected: boolean;
+}
+
 export const Container = styled.View`
   flexDirection: row;
   flexWrap: wrap;
@@ -9,9 +15,9 @@ export const Container = styled.View`
   width: 350px;
 `
 
-export const Button = styled.Pressable`
+export const Button = styled.Pressable<ButtonProps>`
   alignItems: center;
-  background-color: #ADC0C4;
+  background-color: ${({ isSelected, color }) => isSelected ? color : "#ADC0C4"};
   border: none;
   borderRadius: 50px;    
   height: 60px;

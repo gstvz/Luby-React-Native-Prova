@@ -11,7 +11,8 @@ export type GameType = {
 export type GameData = {
   min_cart_value: number,
   types: GameType[],
-  activeGame: GameType
+  activeGame: GameType,
+  selectedNumbers: number[];
 };
 
 export type GamesState = {

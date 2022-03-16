@@ -3,6 +3,7 @@ import { GamesState, GameType } from "@shared/types";
 import { gamesActions } from "@store/games";
 import { getGamesData } from "@store/games/thunk";
 import { useEffect } from "react";
+import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 
@@ -10,6 +11,7 @@ export const BetScreen = () => {
   const dispatch = useDispatch();
   const games = useSelector((state: GamesState) => state.games.types);
   const activeGame = useSelector((state: GamesState) => state.games.activeGame);
+  const selectedNumbers = useSelector((state: GamesState) => state.games.selectedNumbers);
 
   useEffect(() => {
     dispatch(getGamesData());
@@ -19,10 +21,30 @@ export const BetScreen = () => {
     const selectedGame = games.find((game) => game.id === clickedGame.id);
 
     dispatch(gamesActions.setActiveGame({ selectedGame }));
+    dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [] }));
   }
 
   const checkIfGameIsActive = (game: GameType) => {
     return activeGame.id === game.id;
+  }
+
+  const handleNumberButtonClick = (selectedNumber: number) => {
+    if(selectedNumbers.includes(selectedNumber)) {
+      const filteredSelectedNumbers = selectedNumbers.filter((number) => {
+        return number !== selectedNumber;
+      });
+
+      dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: filteredSelectedNumbers }));
+    } else if (selectedNumbers.length === activeGame.max_number) {
+      Alert.alert(`You already chose ${activeGame.max_number} numbers!`);
+      return;
+    } else {      
+      dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [...selectedNumbers, selectedNumber] }));
+    }
+  }
+
+  const checkIfNumberIsSelected = (number: number) => {
+    return selectedNumbers.includes(number);
   }
 
   return (
@@ -45,7 +67,12 @@ export const BetScreen = () => {
           <S.SubTitle>Fill your bet</S.SubTitle>
           <S.Description>{activeGame.description}</S.Description>
         </S.GameDescription>
-        <NumbersButtons range={activeGame.range} />
+        <NumbersButtons 
+          color={activeGame.color}
+          range={activeGame.range} 
+          handleNumberButtonClick={handleNumberButtonClick}
+          checkIfNumberIsSelected={checkIfNumberIsSelected}
+        />
       </S.Content>
     </S.Container>
   )

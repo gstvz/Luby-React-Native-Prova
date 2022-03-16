@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import * as S from "./styles";
 
 type Props = {
+  color: string;
   range: number;
+  handleNumberButtonClick: (number: number) => void;
+  checkIfNumberIsSelected: (number: number) => boolean;
 }
 
 type ButtonsArray = {
   number: number;
 }[]
 
-export const NumbersButtons = ({ range }: Props) => {
+export const NumbersButtons = ({ color, range, handleNumberButtonClick, checkIfNumberIsSelected }: Props) => {
   const [numberButtons, setNumberButtons] = useState<ButtonsArray>([]);
 
   useEffect(() => {
@@ -29,7 +32,11 @@ export const NumbersButtons = ({ range }: Props) => {
   return (
     <S.Container>
       {numberButtons.map((number) => (
-        <S.Button>
+        <S.Button 
+          color={color}
+          onPress={() => handleNumberButtonClick(number.number)}
+          isSelected={checkIfNumberIsSelected(number.number)}
+        >
           <S.ButtonValue>{`${number.number}`.padStart(2, "0")}</S.ButtonValue>
         </S.Button>
       ))}
