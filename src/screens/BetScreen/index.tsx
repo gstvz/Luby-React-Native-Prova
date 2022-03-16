@@ -1,4 +1,4 @@
-import { Filter, Logo, NumbersButtons } from "@components";
+import { GamesButtons, Logo, NumbersButtons } from "@components";
 import { GamesState, GameType } from "@shared/types";
 import { gamesActions } from "@store/games";
 import { getGamesData } from "@store/games/thunk";
@@ -32,7 +32,7 @@ export const BetScreen = () => {
         <S.NewBet>NEW BET </S.NewBet>
         <S.GameName>FOR {activeGame.type.toUpperCase()}</S.GameName>
       </S.Title>
-      <Filter
+      <GamesButtons
         title="Choose a game"
         types={games}
         handleGameFilter={handleGameFilter}

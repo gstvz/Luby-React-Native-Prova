@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GamesState, GameType, UserState } from "@shared/types";
 import { getGamesData } from "@store/games/thunk";
 import { getUserBets } from "@store/user/thunk";
-import { Filter, GamesList, Logo } from "@components";
+import { GamesButtons, GamesList, Logo } from "@components";
 import * as S from "./styles";
 
 export const HomeScreen = () => {
@@ -48,7 +48,7 @@ export const HomeScreen = () => {
     <S.Container>
       <Logo />
       <S.Title>RECENT GAMES</S.Title>
-      <Filter 
+      <GamesButtons 
         title="Filters"
         types={games} 
         handleGameFilter={handleGameFilter}

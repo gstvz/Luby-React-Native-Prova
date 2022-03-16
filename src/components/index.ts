@@ -1,5 +1,5 @@
 export * from "./AuthHeader";
-export * from "./Filter";
+export * from "./GamesButtons";
 export * from "./Forms";
 export * from "./GamesList";
 export * from "./Logo";
