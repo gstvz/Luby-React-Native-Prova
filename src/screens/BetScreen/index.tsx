@@ -2,6 +2,7 @@ import { GameActions, GamesButtons, Logo, NumbersButtons } from "@components";
 import { GamesState, GameType } from "@shared/types";
 import { gamesActions } from "@store/games";
 import { getGamesData } from "@store/games/thunk";
+import { cartActions } from "@store/cart";
 import { useEffect } from "react";
 import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
@@ -104,6 +105,14 @@ export const BetScreen = () => {
     )
   }
 
+  const handleAddGameToCart = () => {
+    dispatch(cartActions.addGameToCart({
+      game_id: activeGame.id,
+      numbers: selectedNumbers
+    }));
+    dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [] }));
+  }
+
   return (
     <S.Container>
       <S.Content contentContainerStyle={{
@@ -130,7 +139,11 @@ export const BetScreen = () => {
           handleNumberButtonClick={handleNumberButtonClick}
           checkIfNumberIsSelected={checkIfNumberIsSelected}
         />        
-        <GameActions handleCompleteGame={handleCompleteGame} handleClearGame={handleClearGame} />
+        <GameActions 
+          handleCompleteGame={handleCompleteGame} 
+          handleClearGame={handleClearGame} 
+          handleAddGameToCart={handleAddGameToCart}
+        />
       </S.Content>
     </S.Container>
   )

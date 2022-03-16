@@ -4,9 +4,10 @@ import * as S from "./styles";
 type Props = {
   handleCompleteGame: () => void;
   handleClearGame: () => void;
+  handleAddGameToCart:() => void;
 }
 
-export const GameActions = ({ handleCompleteGame, handleClearGame }: Props) => {
+export const GameActions = ({ handleCompleteGame, handleClearGame, handleAddGameToCart }: Props) => {
   return (
     <S.Container>
       <S.GameButtonsWrapper>
@@ -18,7 +19,7 @@ export const GameActions = ({ handleCompleteGame, handleClearGame }: Props) => {
         </S.GameButton>
       </S.GameButtonsWrapper>
       <S.CartButtonWrapper>
-        <S.CartButton>
+        <S.CartButton onPress={handleAddGameToCart}>
           <Ionicons name="cart-outline" size={26} color="white" />
           <S.CartButtonText>Add to Cart</S.CartButtonText>
         </S.CartButton>
