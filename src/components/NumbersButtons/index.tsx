@@ -33,6 +33,7 @@ export const NumbersButtons = ({ color, range, handleNumberButtonClick, checkIfN
     <S.Container>
       {numberButtons.map((number) => (
         <S.Button 
+          key={number.number}
           color={color}
           onPress={() => handleNumberButtonClick(number.number)}
           isSelected={checkIfNumberIsSelected(number.number)}
