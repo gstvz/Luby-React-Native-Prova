@@ -1,8 +1,15 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Logo } from '@components';
 import * as S from "./styles";
+import { useSelector } from "react-redux";
+import { CartState } from "@shared/types/cart";
+import { GamesState } from "@shared/types";
+import { formatToBRL } from "@shared/helpers";
 
 export const CartScreen = () => {
+  const cart = useSelector((state: CartState) => state.cart.bets);
+  const games = useSelector((state: GamesState) => state.games.types);
+
   return (
     <S.Container>      
       <S.Content>
@@ -12,30 +19,20 @@ export const CartScreen = () => {
             <S.TitleText>CART</S.TitleText>
           </S.Title>
           <S.BetsWrapper>
-            <S.BetWrapper>
-              <S.BetDeleteButton>
-                <Ionicons name="trash-outline" size={26} />
-              </S.BetDeleteButton>
-              <S.Bet>
-                <S.BetNumbers>1, 2 ,3 ,4 ,5 ,6</S.BetNumbers>
-                <S.BetGameAndPrice>
-                  <S.BetGame>Lotofácil</S.BetGame>
-                  <S.BetPrice>R$ 2,50</S.BetPrice>
-                </S.BetGameAndPrice>
-              </S.Bet>
-            </S.BetWrapper>
-            <S.BetWrapper>
-              <S.BetDeleteButton>
-                <Ionicons name="trash-outline" size={26} />
-              </S.BetDeleteButton>
-              <S.Bet>
-                <S.BetNumbers>1, 2 ,3 ,4 ,5 ,6</S.BetNumbers>
-                <S.BetGameAndPrice>
-                  <S.BetGame>Lotofácil</S.BetGame>
-                  <S.BetPrice>R$ 2,50</S.BetPrice>
-                </S.BetGameAndPrice>
-              </S.Bet>
-            </S.BetWrapper>
+            {cart.map((bet) => (
+              <S.BetWrapper>
+                <S.BetDeleteButton>
+                  <Ionicons name="trash-outline" size={26} />
+                </S.BetDeleteButton>
+                <S.Bet>
+                  <S.BetNumbers>{bet.numbers}</S.BetNumbers>
+                  <S.BetGameAndPrice>
+                    <S.BetGame>{games.find((game) => game.id === bet.game_id)!.type}</S.BetGame>
+                    <S.BetPrice>{formatToBRL(games.find((game) => game.id === bet.game_id)!.price)}</S.BetPrice>
+                  </S.BetGameAndPrice>
+                </S.Bet>
+              </S.BetWrapper>
+            ))}
           </S.BetsWrapper>
           <S.CartTotalWrapper>
             <S.CartTotal>CART </S.CartTotal>
