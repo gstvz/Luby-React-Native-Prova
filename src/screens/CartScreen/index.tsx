@@ -25,7 +25,7 @@ export const CartScreen = () => {
                   <Ionicons name="trash-outline" size={26} />
                 </S.BetDeleteButton>
                 <S.Bet>
-                  <S.BetNumbers>{bet.numbers}</S.BetNumbers>
+                  <S.BetNumbers>{bet.numbers.join(", ")}</S.BetNumbers>
                   <S.BetGameAndPrice>
                     <S.BetGame>{games.find((game) => game.id === bet.game_id)!.type}</S.BetGame>
                     <S.BetPrice>{formatToBRL(games.find((game) => game.id === bet.game_id)!.price)}</S.BetPrice>

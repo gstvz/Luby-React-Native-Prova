@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
+import { sortArray } from "@shared/helpers";
 
 export const BetScreen = () => {
   const dispatch = useDispatch();
@@ -106,9 +107,11 @@ export const BetScreen = () => {
   }
 
   const handleAddGameToCart = () => {
+    const sortedNumbers = sortArray(selectedNumbers);
+
     dispatch(cartActions.addGameToCart({
       game_id: activeGame.id,
-      numbers: selectedNumbers
+      numbers: sortedNumbers
     }));
     dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [] }));
   }
