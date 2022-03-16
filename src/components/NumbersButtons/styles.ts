@@ -9,9 +9,8 @@ type ButtonProps = {
 export const Container = styled.View`
   flexDirection: row;
   flexWrap: wrap;
-  height: 100%;
-  paddingTop: 10px;
-  paddingBottom: 60px;
+  paddingTop: 16px;
+  paddingBottom: 16px;
   width: 350px;
 `
 
