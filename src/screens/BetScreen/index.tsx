@@ -1,4 +1,4 @@
-import { GamesButtons, Logo, NumbersButtons } from "@components";
+import { GameActions, GamesButtons, Logo, NumbersButtons } from "@components";
 import { GamesState, GameType } from "@shared/types";
 import { gamesActions } from "@store/games";
 import { getGamesData } from "@store/games/thunk";
@@ -72,7 +72,8 @@ export const BetScreen = () => {
           range={activeGame.range} 
           handleNumberButtonClick={handleNumberButtonClick}
           checkIfNumberIsSelected={checkIfNumberIsSelected}
-        />
+        />        
+        <GameActions />
       </S.Content>
     </S.Container>
   )
