@@ -5,6 +5,7 @@ export const theme = {
     background_primary: "#F7F7F7",
     background_secondary: "#F4F4F4",
     background_tertiary: "#FFFFFF",
+    light: "#E2E2E2",
     numberButton: "#ADC0C4",
     placeholder: "#9D9D9D",
     titles: "#707070",

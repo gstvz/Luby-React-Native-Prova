@@ -8,6 +8,7 @@ declare module 'styled-components' {
       background_primary: string,
       background_secondary: string,
       background_tertiary: string,
+      light: string,
       numberButton: string,
       placeholder: string,
       titles: string,
