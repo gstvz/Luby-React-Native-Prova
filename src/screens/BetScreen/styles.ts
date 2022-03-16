@@ -1,8 +1,11 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
-  alignItems: center;
+export const Container = styled.ScrollView`
+  flex: 1;
   padding: 20px;
+`
+
+export const Content = styled.ScrollView`
 `
 
 export const Title = styled.View`

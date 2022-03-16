@@ -27,18 +27,22 @@ export const BetScreen = () => {
 
   return (
     <S.Container>
-      <Logo />
-      <S.Title>
-        <S.NewBet>NEW BET </S.NewBet>
-        <S.GameName>FOR {activeGame.type.toUpperCase()}</S.GameName>
-      </S.Title>
-      <GamesButtons
-        title="Choose a game"
-        types={games}
-        handleGameFilter={handleGameFilter}
-        isActive={checkIfGameIsActive}
-      />
-      <NumbersButtons />
+      <S.Content contentContainerStyle={{
+        alignItems: "center"
+      }}>
+        <Logo />
+        <S.Title>
+          <S.NewBet>NEW BET </S.NewBet>
+          <S.GameName>FOR {activeGame.type.toUpperCase()}</S.GameName>
+        </S.Title>
+        <GamesButtons
+          title="Choose a game"
+          types={games}
+          handleGameFilter={handleGameFilter}
+          isActive={checkIfGameIsActive}
+        />
+        <NumbersButtons range={activeGame.range} />
+      </S.Content>
     </S.Container>
   )
 }

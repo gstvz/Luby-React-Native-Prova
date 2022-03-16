@@ -1,12 +1,12 @@
 import styled from "styled-components/native";
 
-export const NumbersWrapper = styled.View`
+export const Container = styled.View`
   flexDirection: row;
-  height: 300px;
-  marginTop: 10px;
-`
-
-export const NumbersList = styled.FlatList`
+  flexWrap: wrap;
+  height: 100%;
+  paddingTop: 10px;
+  paddingBottom: 60px;
+  width: 350px;
 `
 
 export const Button = styled.Pressable`
