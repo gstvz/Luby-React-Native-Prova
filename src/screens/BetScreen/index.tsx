@@ -41,6 +41,10 @@ export const BetScreen = () => {
           handleGameFilter={handleGameFilter}
           isActive={checkIfGameIsActive}
         />
+        <S.GameDescription>          
+          <S.SubTitle>Fill your bet</S.SubTitle>
+          <S.Description>{activeGame.description}</S.Description>
+        </S.GameDescription>
         <NumbersButtons range={activeGame.range} />
       </S.Content>
     </S.Container>

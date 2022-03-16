@@ -23,3 +23,19 @@ export const GameName = styled.Text`
   fontFamily: ${({ theme }) => theme.fonts.italic_400};
   fontSize: 30px;
 `
+
+export const GameDescription = styled.View`
+  width: 340px;
+`
+
+export const SubTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.titles};
+  fontFamily: ${({ theme }) => theme.fonts.italic_700};
+  fontSize: 20px;
+`
+
+export const Description = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+  fontFamily: ${({ theme }) => theme.fonts.italic_400};
+  fontSize: 20px;
+`
