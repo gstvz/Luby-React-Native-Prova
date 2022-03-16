@@ -1,14 +1,19 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "./styles";
 
-export const GameActions = () => {
+type Props = {
+  handleCompleteGame: () => void;
+  handleClearGame: () => void;
+}
+
+export const GameActions = ({ handleCompleteGame, handleClearGame }: Props) => {
   return (
     <S.Container>
       <S.GameButtonsWrapper>
-        <S.GameButton>
+        <S.GameButton onPress={handleCompleteGame}>
           <S.GameButtonText>Complete Game</S.GameButtonText>
         </S.GameButton>
-        <S.GameButton>
+        <S.GameButton onPress={handleClearGame}>
           <S.GameButtonText>Clear Game</S.GameButtonText>
         </S.GameButton>
       </S.GameButtonsWrapper>

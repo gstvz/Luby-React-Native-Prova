@@ -1,5 +1,9 @@
 import styled from "styled-components/native";
 
+type GameButtonProps = {
+  onPress: () => void;
+}
+
 export const Container = styled.View`
   paddingBottom: 30px;
 `
@@ -11,7 +15,7 @@ export const GameButtonsWrapper = styled.View`
   width: 320px;
 `
 
-export const GameButton = styled.Pressable`
+export const GameButton = styled.Pressable<GameButtonProps>`
   alignItems: center;
   backgroundColor: ${({ theme }) => theme.colors.background_secondary};
   border: 1px;

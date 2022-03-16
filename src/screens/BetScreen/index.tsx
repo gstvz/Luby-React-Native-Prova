@@ -36,7 +36,7 @@ export const BetScreen = () => {
 
       dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: filteredSelectedNumbers }));
     } else if (selectedNumbers.length === activeGame.max_number) {
-      Alert.alert(`You already chose ${activeGame.max_number} numbers!`);
+      Alert.alert("Selecting numbers", `You already chose ${activeGame.max_number} numbers!`);
       return;
     } else {      
       dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [...selectedNumbers, selectedNumber] }));
@@ -45,6 +45,63 @@ export const BetScreen = () => {
 
   const checkIfNumberIsSelected = (number: number) => {
     return selectedNumbers.includes(number);
+  }
+
+  const handleCompleteGame = () => {
+    const numbersLeft = activeGame.max_number - selectedNumbers.length;
+
+    if (numbersLeft === 0) {
+      Alert.alert("Complete Game", "Your game is already completed!");
+      return;
+    }
+
+    const randomNumbers: number[] = [];
+
+    while (randomNumbers.length !== numbersLeft) {
+      let randomNumber = Math.floor(Math.random() * activeGame.range);
+
+      if (
+        !randomNumbers.includes(randomNumber) &&
+        !selectedNumbers.includes(randomNumber) &&
+        randomNumber !== 0
+      ) {
+        randomNumbers.push(randomNumber);
+      }
+    }
+
+    dispatch(
+      gamesActions.setSelectedNumbers({
+        selectedNumbers: [...selectedNumbers, ...randomNumbers],
+      })
+    );
+  }
+
+  const handleClearGame = () => {
+    if(selectedNumbers.length === 0) {
+      Alert.alert("Clear Game", "You haven't selected any number!");
+      return;
+    }
+
+    Alert.alert("Clear Game", "Are you sure you want to clear your game?", [
+      {
+        text: "Yes",
+        onPress: () => {
+          dispatch(
+            gamesActions.setSelectedNumbers({
+              selectedNumbers: [],
+            })
+          );
+          Alert.alert("Clear Game", "Game cleared!");
+        }
+      },
+      {
+        text: "Cancel"
+      }
+    ],
+    {
+      cancelable: true
+    }
+    )
   }
 
   return (
@@ -73,7 +130,7 @@ export const BetScreen = () => {
           handleNumberButtonClick={handleNumberButtonClick}
           checkIfNumberIsSelected={checkIfNumberIsSelected}
         />        
-        <GameActions />
+        <GameActions handleCompleteGame={handleCompleteGame} handleClearGame={handleClearGame} />
       </S.Content>
     </S.Container>
   )
