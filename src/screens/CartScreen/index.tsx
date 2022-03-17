@@ -80,7 +80,7 @@ export const CartScreen = ({ navigation }: Props) => {
             {cart.bets.length === 0 ? (
               <S.EmptyCart>
                 <MaterialCommunityIcons name="cart-remove" size={44} color="red" />
-                <S.EmptyCartText>{`The cart is empty :(`}</S.EmptyCartText>
+                <S.EmptyCartText>The cart is empty!</S.EmptyCartText>
               </S.EmptyCart>
             ) :
               cart.bets.map((bet, index) => {
