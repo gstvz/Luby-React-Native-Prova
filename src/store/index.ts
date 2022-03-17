@@ -4,5 +4,9 @@ import { gamesSlice } from "./games";
 import { userSlice } from "./user";
 
 export const store = configureStore({
-  reducer: { user: userSlice.reducer, games: gamesSlice.reducer, cart: cartSlice.reducer },
+  reducer: {
+    user: userSlice.reducer,
+    games: gamesSlice.reducer,
+    cart: cartSlice.reducer,
+  },
 });

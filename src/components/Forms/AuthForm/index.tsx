@@ -1,10 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "@shared/schemas";
 import * as S from "../styles";
+import { loginSchema } from "@shared/schemas";
 import { postUserData } from "@store/user/thunk";
-import { useDispatch } from "react-redux";
 
 type Props = {
   onSignUpPress: () => void;
@@ -26,9 +26,9 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLogin: SubmitHandler<LoginInputs> = async(loginData) => {
+  const handleLogin: SubmitHandler<LoginInputs> = async (loginData) => {
     dispatch(postUserData(loginData));
-  }
+  };
 
   return (
     <S.Container>

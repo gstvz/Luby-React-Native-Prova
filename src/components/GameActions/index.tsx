@@ -4,10 +4,14 @@ import * as S from "./styles";
 type Props = {
   handleCompleteGame: () => void;
   handleClearGame: () => void;
-  handleAddGameToCart:() => void;
-}
+  handleAddGameToCart: () => void;
+};
 
-export const GameActions = ({ handleCompleteGame, handleClearGame, handleAddGameToCart }: Props) => {
+export const GameActions = ({
+  handleCompleteGame,
+  handleClearGame,
+  handleAddGameToCart,
+}: Props) => {
   return (
     <S.Container>
       <S.GameButtonsWrapper>
@@ -25,5 +29,5 @@ export const GameActions = ({ handleCompleteGame, handleClearGame, handleAddGame
         </S.CartButton>
       </S.CartButtonWrapper>
     </S.Container>
-  )
-}
+  );
+};

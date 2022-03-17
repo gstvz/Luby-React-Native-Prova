@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as S from "./styles";
+import { GamesButtons, GamesList, Logo } from "@components";
 import { GamesState, GameType, UserState } from "@shared/types";
 import { getGamesData } from "@store/games/thunk";
 import { getUserBets } from "@store/user/thunk";
-import { GamesButtons, GamesList, Logo } from "@components";
-import * as S from "./styles";
 
 export const HomeScreen = () => {
   const dispatch = useDispatch();

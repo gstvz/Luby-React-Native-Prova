@@ -3,11 +3,11 @@ import { UserData } from "@shared/types";
 
 const initialState: UserData = {
   user: null,
-  userBets: null
-}
+  userBets: null,
+};
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     authenticateUser(state, action) {
@@ -15,7 +15,7 @@ export const userSlice = createSlice({
         id: action.payload.id,
         email: action.payload.email,
         token: action.payload.token,
-        expires_at: action.payload.expires_at
+        expires_at: action.payload.expires_at,
       };
       state.user = user;
     },
@@ -24,8 +24,8 @@ export const userSlice = createSlice({
     },
     setUserBets(state, action) {
       state.userBets = action.payload;
-    }
-  }
-})
+    },
+  },
+});
 
 export const userActions = userSlice.actions;

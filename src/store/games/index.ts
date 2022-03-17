@@ -11,10 +11,10 @@ const initialState: GameData = {
     range: 0,
     price: 0,
     max_number: 0,
-    color: ""
+    color: "",
   },
-  selectedNumbers: []
-}
+  selectedNumbers: [],
+};
 
 export const gamesSlice = createSlice({
   name: "games",
@@ -30,8 +30,8 @@ export const gamesSlice = createSlice({
     },
     setSelectedNumbers(state, action) {
       state.selectedNumbers = action.payload.selectedNumbers;
-    }
-  }
-})
+    },
+  },
+});
 
 export const gamesActions = gamesSlice.actions;

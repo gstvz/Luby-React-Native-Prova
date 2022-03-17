@@ -1,13 +1,15 @@
 import { gamesActions } from "./";
-import { listGames } from "@shared/services/games/listGames";
+import { listGames } from "@shared/services/games";
 
 export const getGamesData = () => {
-  return async(dispatch: Function) => {
+  return async (dispatch: Function) => {
     const gamesData = await listGames();
-    
-    dispatch(gamesActions.getGames({
+
+    dispatch(
+      gamesActions.getGames({
         min_cart_value: gamesData?.data.min_cart_value,
-        types: gamesData?.data.types
-    }))
-  }
-}
+        types: gamesData?.data.types,
+      })
+    );
+  };
+};

@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { AuthHeader, ResetForm } from "@components";
 import * as S from "./styles";
+import { AuthHeader, ResetForm } from "@components";
 
 type RootStackParamList = {
   Reset: undefined;

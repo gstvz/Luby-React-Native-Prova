@@ -1,9 +1,9 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "@shared/schemas";
 import { Ionicons } from "@expo/vector-icons";
 import * as S from "../styles";
-import { registerUser } from "@shared/services/user/registerUser";
+import { registerSchema } from "@shared/schemas";
+import { registerUser } from "@shared/services/user";
 
 type Props = {
   onBackPress: () => void;
@@ -25,13 +25,13 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
     resolver: yupResolver(registerSchema),
   });
 
-  const handleRegister: SubmitHandler<Inputs> = async(registerData) => {
+  const handleRegister: SubmitHandler<Inputs> = async (registerData) => {
     const response = await registerUser(registerData);
-    
-    if(response?.status === 200) {
+
+    if (response?.status === 200) {
       onRegister();
     }
-  }
+  };
 
   return (
     <S.Container>

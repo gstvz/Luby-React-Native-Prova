@@ -3,7 +3,7 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "../styles";
 import { resetSchema } from "@shared/schemas";
-import { resetPassword } from "@shared/services/auth/resetPassword";
+import { resetPassword } from "@shared/services/auth";
 
 type Props = {
   onBackPress: () => void;
@@ -23,12 +23,12 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
     resolver: yupResolver(resetSchema),
   });
 
-  const handleReset: SubmitHandler<Input> = async(userEmail) => {
+  const handleReset: SubmitHandler<Input> = async (userEmail) => {
     const response = await resetPassword(userEmail);
-    if(response?.status === 200) {
+    if (response?.status === 200) {
       onSendLink();
     }
-  }
+  };
 
   return (
     <S.Container>

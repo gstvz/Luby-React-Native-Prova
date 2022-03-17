@@ -6,13 +6,18 @@ type Props = {
   range: number;
   handleNumberButtonClick: (number: number) => void;
   checkIfNumberIsSelected: (number: number) => boolean;
-}
+};
 
 type ButtonsArray = {
   number: number;
-}[]
+}[];
 
-export const NumbersButtons = ({ color, range, handleNumberButtonClick, checkIfNumberIsSelected }: Props) => {
+export const NumbersButtons = ({
+  color,
+  range,
+  handleNumberButtonClick,
+  checkIfNumberIsSelected,
+}: Props) => {
   const [numberButtons, setNumberButtons] = useState<ButtonsArray>([]);
 
   useEffect(() => {
@@ -20,7 +25,7 @@ export const NumbersButtons = ({ color, range, handleNumberButtonClick, checkIfN
       const numbers: ButtonsArray = [];
 
       for (let number = 1; number <= range; number++) {
-        numbers.push({number: number});
+        numbers.push({ number: number });
       }
 
       setNumberButtons(numbers);
@@ -32,7 +37,7 @@ export const NumbersButtons = ({ color, range, handleNumberButtonClick, checkIfN
   return (
     <S.Container>
       {numberButtons.map((number) => (
-        <S.Button 
+        <S.Button
           key={number.number}
           color={color}
           onPress={() => handleNumberButtonClick(number.number)}

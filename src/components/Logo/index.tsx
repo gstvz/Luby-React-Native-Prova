@@ -6,5 +6,5 @@ export const Logo = () => {
       <S.Title>TGL</S.Title>
       <S.Line />
     </S.Container>
-  )
-}
+  );
+};

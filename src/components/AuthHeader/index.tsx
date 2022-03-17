@@ -1,8 +1,8 @@
-import * as S from './styles';
+import * as S from "./styles";
 
 type AuthHeaderProps = {
   screen: string;
-}
+};
 
 export const AuthHeader = (props: AuthHeaderProps) => {
   return (
@@ -12,5 +12,5 @@ export const AuthHeader = (props: AuthHeaderProps) => {
       <S.BottomTitle>LOTTERY</S.BottomTitle>
       <S.ScreenTitle>{props.screen}</S.ScreenTitle>
     </S.Container>
-  )
-}
+  );
+};
