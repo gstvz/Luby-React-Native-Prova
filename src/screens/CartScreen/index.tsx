@@ -19,20 +19,26 @@ export const CartScreen = () => {
             <S.TitleText>CART</S.TitleText>
           </S.Title>
           <S.BetsWrapper>
-            {cart.map((bet) => (
-              <S.BetWrapper>
-                <S.BetDeleteButton>
-                  <Ionicons name="trash-outline" size={26} />
-                </S.BetDeleteButton>
-                <S.Bet>
-                  <S.BetNumbers>{formatNumbers(bet.numbers).join(", ")}</S.BetNumbers>
-                  <S.BetGameAndPrice>
-                    <S.BetGame>{games.find((game) => game.id === bet.game_id)!.type}</S.BetGame>
-                    <S.BetPrice>{formatToBRL(games.find((game) => game.id === bet.game_id)!.price)}</S.BetPrice>
-                  </S.BetGameAndPrice>
-                </S.Bet>
-              </S.BetWrapper>
-            ))}
+            {cart.map((bet) => {
+              const color = games.find((game) => game.id === bet.game_id)!.color;
+              const type = games.find((game) => game.id === bet.game_id)!.type;
+              const price = formatToBRL(games.find((game) => game.id === bet.game_id)!.price);
+              const formattedNumbers = formatNumbers(bet.numbers).join(", ")
+
+              return (
+                <S.BetWrapper>
+                  <S.BetDeleteButton>
+                    <Ionicons name="trash-outline" size={26} />
+                  </S.BetDeleteButton>
+                  <S.Bet color={color}>
+                    <S.BetNumbers>{formattedNumbers}</S.BetNumbers>
+                    <S.BetGameAndPrice>
+                      <S.BetGame color={color}>{type}</S.BetGame>
+                      <S.BetPrice>{price}</S.BetPrice>
+                    </S.BetGameAndPrice>
+                  </S.Bet>
+                </S.BetWrapper>
+            )})}
           </S.BetsWrapper>
           <S.CartTotalWrapper>
             <S.CartTotal>CART </S.CartTotal>

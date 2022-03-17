@@ -1,8 +1,17 @@
 import styled from "styled-components/native";
 
+type BetProps = {
+  color: string;
+}
+
+type BetGameProps = {
+  color: string;
+}
+
 export const Container = styled.View`
   flex: 1;
   padding: 20px;
+  marginBottom: 40px;
 `
 
 export const Content = styled.ScrollView`
@@ -44,8 +53,8 @@ export const BetWrapper = styled.View`
 export const BetDeleteButton = styled.Pressable`
 `
 
-export const Bet = styled.View`
-  borderLeftColor: ${({ theme }) => theme.colors.action};
+export const Bet = styled.View<BetProps>`
+  borderLeftColor: ${({ color }) => color};
   borderLeftWidth: 4px;
   borderRadius: 4px;
   borderStyle: solid;
@@ -64,8 +73,8 @@ export const BetGameAndPrice = styled.View`
   flexDirection: row;
 `
 
-export const BetGame = styled.Text`
-  color: ${({ theme }) => theme.colors.action};
+export const BetGame = styled.Text<BetGameProps>`
+  color: ${({ color }) => color};
   fontFamily: ${({ theme }) => theme.fonts.italic_700};
   fontSize: 16px;
   marginLeft: 10px;
