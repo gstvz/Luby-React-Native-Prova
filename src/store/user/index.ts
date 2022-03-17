@@ -19,6 +19,9 @@ export const userSlice = createSlice({
       };
       state.user = user;
     },
+    logoutUser(state) {
+      state.user = null;
+    },
     setUserBets(state, action) {
       state.userBets = action.payload;
     }

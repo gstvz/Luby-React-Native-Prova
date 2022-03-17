@@ -1,14 +1,28 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList } from "@react-navigation/drawer";
 import { HomeScreen, BetScreen, CartScreen } from "@screens";
+import { userActions } from "@store/user";
+import { Pressable, Text } from "react-native";
+import { useDispatch } from "react-redux";
 const Drawer = createDrawerNavigator();
 
 export const AppDrawer = () => {
+  const dispatch = useDispatch();
+
   return (
     <Drawer.Navigator 
       initialRouteName="Home"
       screenOptions={{
         headerTitleAlign: "center"
       }}
+      drawerContent={(props) => 
+        <DrawerContentScrollView>
+          <DrawerItemList {...props} />
+          <DrawerItem
+              label="Log out"
+              onPress={() => dispatch(userActions.logoutUser())}
+          />
+        </DrawerContentScrollView>
+      }
     >
       <Drawer.Screen 
         name="Home" 
