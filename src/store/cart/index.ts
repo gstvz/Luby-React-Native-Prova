@@ -27,6 +27,10 @@ export const cartSlice = createSlice({
       }).reduce((acc, cur) => acc + cur, 0);
       state.total = newTotal;
     },
+    saveBet(state) {
+      state.bets = [];
+      state.total = 0;
+    }
   },
 });
 

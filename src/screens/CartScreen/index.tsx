@@ -7,11 +7,19 @@ import { GamesState } from "@shared/types";
 import { formatNumbers, formatToBRL } from "@shared/helpers";
 import { cartActions } from "@store/cart";
 import { Alert } from "react-native";
+import { newBet } from "@shared/services/bets/newBet";
+import { DrawerScreenProps } from "@react-navigation/drawer";
 
-export const CartScreen = () => {
+type RootStackParamList = {
+  Home: undefined;
+}
+
+type Props = DrawerScreenProps<RootStackParamList, 'Home'>;
+
+export const CartScreen = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const cart = useSelector((state: CartState) => state.cart);
-  const games = useSelector((state: GamesState) => state.games.types);
+  const games = useSelector((state: GamesState) => state.games);
 
   const generateKey = (index: number) => {
     return `${index}_${new Date().getTime() + index}`;
@@ -24,7 +32,7 @@ export const CartScreen = () => {
         onPress: () => {
           dispatch(cartActions.removeGameFromCart(numbers));
           dispatch(cartActions.calculateCartTotal({
-            games: games
+            games: games.types
           }));
           Alert.alert("Delete Bet", "Bet Deleted!");
         }
@@ -39,6 +47,24 @@ export const CartScreen = () => {
     )
   };
 
+  const handleSaveBet = async () => {
+    if(cart.total < games.min_cart_value) {
+      Alert.alert("Save Bet", `The cart hasnt reached the minimum value of ${formatToBRL(games.min_cart_value)}!`)
+      return;
+    };
+
+    const bets = {
+      games: cart.bets
+    };
+
+    const response = await newBet(bets);
+    
+    if(response?.status === 200) {
+      navigation.jumpTo('Home');
+      dispatch(cartActions.saveBet());
+    }
+  }
+
   return (
     <S.Container>      
       <S.Content>
@@ -49,9 +75,9 @@ export const CartScreen = () => {
           </S.Title>
           <S.BetsWrapper>
             {cart.bets.map((bet, index) => {
-              const color = games.find((game) => game.id === bet.game_id)!.color;
-              const type = games.find((game) => game.id === bet.game_id)!.type;
-              const price = formatToBRL(games.find((game) => game.id === bet.game_id)!.price);
+              const color = games.types.find((game) => game.id === bet.game_id)!.color;
+              const type = games.types.find((game) => game.id === bet.game_id)!.type;
+              const price = formatToBRL(games.types.find((game) => game.id === bet.game_id)!.price);
               const formattedNumbers = formatNumbers(bet.numbers).join(", ")
 
               return (
@@ -74,7 +100,7 @@ export const CartScreen = () => {
             <S.CartTotalValue>TOTAL: {formatToBRL(cart.total)}</S.CartTotalValue>
           </S.CartTotalWrapper>
         </S.Cart>
-        <S.SaveBetButton>
+        <S.SaveBetButton onPress={handleSaveBet}>
             <S.SaveBetButtonContent>
               Save
               <Ionicons name="arrow-forward" size={32} />
