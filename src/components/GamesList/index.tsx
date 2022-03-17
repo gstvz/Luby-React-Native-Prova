@@ -28,7 +28,7 @@ export const GamesList = ({ bets }: Props) => {
 
   return (
     <S.RecentGamesWrapper>
-      {bets!.length === 0 ? 
+      {bets?.length === 0 ? 
       <S.EmptyList>
         <Entypo name="emoji-sad" size={44} color="red" />
         <S.EmptyListText>{`There are no recent games!`}</S.EmptyListText>        
