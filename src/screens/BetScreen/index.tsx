@@ -139,6 +139,10 @@ export const BetScreen = () => {
       game_id: activeGame.id,
       numbers: sortedNumbers
     }));
+    dispatch(cartActions.calculateCartTotal({
+      games: games,      
+      price: activeGame.price
+    }))
     dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [] }));
   }
 

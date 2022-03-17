@@ -5,6 +5,7 @@ export type Bet = {
 
 export type Bets = {
   bets: Bet[];
+  total: number;
 };
 
 export type CartState = {

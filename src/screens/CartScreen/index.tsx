@@ -7,7 +7,7 @@ import { GamesState } from "@shared/types";
 import { formatNumbers, formatToBRL } from "@shared/helpers";
 
 export const CartScreen = () => {
-  const cart = useSelector((state: CartState) => state.cart.bets);
+  const cart = useSelector((state: CartState) => state.cart);
   const games = useSelector((state: GamesState) => state.games.types);
 
   return (
@@ -19,7 +19,7 @@ export const CartScreen = () => {
             <S.TitleText>CART</S.TitleText>
           </S.Title>
           <S.BetsWrapper>
-            {cart.map((bet) => {
+            {cart.bets.map((bet) => {
               const color = games.find((game) => game.id === bet.game_id)!.color;
               const type = games.find((game) => game.id === bet.game_id)!.type;
               const price = formatToBRL(games.find((game) => game.id === bet.game_id)!.price);
@@ -42,7 +42,7 @@ export const CartScreen = () => {
           </S.BetsWrapper>
           <S.CartTotalWrapper>
             <S.CartTotal>CART </S.CartTotal>
-            <S.CartTotalValue>TOTAL: R$ 10,00</S.CartTotalValue>
+            <S.CartTotalValue>TOTAL: {formatToBRL(cart.total)}</S.CartTotalValue>
           </S.CartTotalWrapper>
         </S.Cart>
         <S.SaveBetButton>
