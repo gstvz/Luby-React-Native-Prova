@@ -1,7 +1,7 @@
 import { api } from "@shared/services";
 import { Alert } from "react-native";
 
-export type UserData = {
+type UserData = {
   name: string;
   email: string;
   password: string;
