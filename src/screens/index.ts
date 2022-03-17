@@ -1,3 +1,4 @@
+export * from "./AccountScreen";
 export * from "./AuthScreen";
 export * from "./BetScreen";
 export * from "./CartScreen";

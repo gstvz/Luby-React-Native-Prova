@@ -5,7 +5,7 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 import { useDispatch } from "react-redux";
-import { HomeScreen, BetScreen, CartScreen } from "@screens";
+import { HomeScreen, BetScreen, CartScreen, AccountScreen } from "@screens";
 import { userActions } from "@store/user";
 
 const Drawer = createDrawerNavigator();
@@ -30,7 +30,7 @@ export const AppDrawer = () => {
       )}
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
-      {/* <Drawer.Screen name="Account" component={} /> */}
+      <Drawer.Screen name="Account" component={AccountScreen} />
       <Drawer.Screen name="Bet" component={BetScreen} />
       <Drawer.Screen name="Cart" component={CartScreen} />
     </Drawer.Navigator>
