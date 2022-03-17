@@ -8,12 +8,14 @@ import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
 import { sortArray } from "@shared/helpers";
+import { CartState } from "@shared/types/cart";
 
 export const BetScreen = () => {
   const dispatch = useDispatch();
   const games = useSelector((state: GamesState) => state.games.types);
   const activeGame = useSelector((state: GamesState) => state.games.activeGame);
   const selectedNumbers = useSelector((state: GamesState) => state.games.selectedNumbers);
+  const cart = useSelector((state: CartState) => state.cart.bets);
 
   useEffect(() => {
     dispatch(getGamesData());
@@ -106,8 +108,32 @@ export const BetScreen = () => {
     )
   }
 
+  const isGameAlreadyOnCart = (game: {
+    game_id: number;
+    numbers: number[];
+  }) => {
+    const gameType = game.game_id;
+    const gameNumbers = game.numbers;
+    let boolean = false;
+
+    for (const item of cart) {
+      if (item.game_id === gameType) {
+        boolean = JSON.stringify(gameNumbers) === JSON.stringify(item.numbers);
+      }
+    }
+
+    return boolean;
+  };
+
   const handleAddGameToCart = () => {
     const sortedNumbers = sortArray(selectedNumbers);
+    if(isGameAlreadyOnCart({
+      game_id: activeGame.id,
+      numbers: sortedNumbers
+    })) {
+      Alert.alert("Add to cart", "You already have this game on your cart!");
+      return;
+    }
 
     dispatch(cartActions.addGameToCart({
       game_id: activeGame.id,
