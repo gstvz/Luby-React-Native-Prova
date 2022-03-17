@@ -13,6 +13,21 @@ export const RecentGamesWrapper = styled.View`
   marginTop: 10px;
 `
 
+export const EmptyList = styled.View`
+  alignItems: center;
+  justifyContent: center;
+  flex: 1;
+  marginLeft: 10px;
+  marginBottom: 20px;  
+`
+
+export const EmptyListText = styled.Text`
+  color: red;
+  fontFamily: ${({ theme }) => theme.fonts.italic_700};
+  fontSize: 24px;
+  padding: 10px;
+`
+
 export const RecentGamesList = styled.FlatList`
 `
 
