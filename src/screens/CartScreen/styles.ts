@@ -46,6 +46,21 @@ export const BetsWrapper = styled.View`
   marginTop: 10px;
 `
 
+export const EmptyCart = styled.View`
+  alignItems: center;
+  justifyContent: center;
+  flex: 1;
+  marginLeft: 10px;
+  marginBottom: 20px;  
+`
+
+export const EmptyCartText = styled.Text`
+  color: red;
+  fontFamily: ${({ theme }) => theme.fonts.italic_700};
+  fontSize: 24px;
+  padding: 10px;
+`
+
 export const BetWrapper = styled.View`
   alignItems: center;
   flexDirection: row;

@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import { Logo } from '@components';
 import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -76,26 +77,33 @@ export const CartScreen = ({ navigation }: Props) => {
             <S.TitleText>CART</S.TitleText>
           </S.Title>
           <S.BetsWrapper>
-            {cart.bets.map((bet, index) => {
-              const color = games.types.find((game) => game.id === bet.game_id)!.color;
-              const type = games.types.find((game) => game.id === bet.game_id)!.type;
-              const price = formatToBRL(games.types.find((game) => game.id === bet.game_id)!.price);
-              const formattedNumbers = formatNumbers(bet.numbers).join(", ")
+            {cart.bets.length === 0 ? (
+              <S.EmptyCart>
+                <MaterialCommunityIcons name="cart-remove" size={44} color="red" />
+                <S.EmptyCartText>{`The cart is empty :(`}</S.EmptyCartText>
+              </S.EmptyCart>
+            ) :
+              cart.bets.map((bet, index) => {
+                const color = games.types.find((game) => game.id === bet.game_id)!.color;
+                const type = games.types.find((game) => game.id === bet.game_id)!.type;
+                const price = formatToBRL(games.types.find((game) => game.id === bet.game_id)!.price);
+                const formattedNumbers = formatNumbers(bet.numbers).join(", ")
 
-              return (
-                <S.BetWrapper key={generateKey(index)}>
-                  <S.BetDeleteButton onPress={() => handleDeleteBet(bet.numbers, bet.game_id)}>
-                    <Ionicons name="trash-outline" size={26} />
-                  </S.BetDeleteButton>
-                  <S.Bet color={color}>
-                    <S.BetNumbers>{formattedNumbers}</S.BetNumbers>
-                    <S.BetGameAndPrice>
-                      <S.BetGame color={color}>{type}</S.BetGame>
-                      <S.BetPrice>{price}</S.BetPrice>
-                    </S.BetGameAndPrice>
-                  </S.Bet>
-                </S.BetWrapper>
-            )})}
+                return (
+                  <S.BetWrapper key={generateKey(index)}>
+                    <S.BetDeleteButton onPress={() => handleDeleteBet(bet.numbers, bet.game_id)}>
+                      <Ionicons name="trash-outline" size={26} />
+                    </S.BetDeleteButton>
+                    <S.Bet color={color}>
+                      <S.BetNumbers>{formattedNumbers}</S.BetNumbers>
+                      <S.BetGameAndPrice>
+                        <S.BetGame color={color}>{type}</S.BetGame>
+                        <S.BetPrice>{price}</S.BetPrice>
+                      </S.BetGameAndPrice>
+                    </S.Bet>
+                  </S.BetWrapper>
+              )})           
+            }
           </S.BetsWrapper>
           <S.CartTotalWrapper>
             <S.CartTotal>CART </S.CartTotal>
