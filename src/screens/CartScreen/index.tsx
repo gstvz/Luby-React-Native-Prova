@@ -4,7 +4,7 @@ import * as S from "./styles";
 import { useSelector } from "react-redux";
 import { CartState } from "@shared/types/cart";
 import { GamesState } from "@shared/types";
-import { formatToBRL } from "@shared/helpers";
+import { formatNumbers, formatToBRL } from "@shared/helpers";
 
 export const CartScreen = () => {
   const cart = useSelector((state: CartState) => state.cart.bets);
@@ -25,7 +25,7 @@ export const CartScreen = () => {
                   <Ionicons name="trash-outline" size={26} />
                 </S.BetDeleteButton>
                 <S.Bet>
-                  <S.BetNumbers>{bet.numbers.join(", ")}</S.BetNumbers>
+                  <S.BetNumbers>{formatNumbers(bet.numbers).join(", ")}</S.BetNumbers>
                   <S.BetGameAndPrice>
                     <S.BetGame>{games.find((game) => game.id === bet.game_id)!.type}</S.BetGame>
                     <S.BetPrice>{formatToBRL(games.find((game) => game.id === bet.game_id)!.price)}</S.BetPrice>

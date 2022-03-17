@@ -57,6 +57,7 @@ export const BetNumbers = styled.Text`
   fontFamily: ${({ theme }) => theme.fonts.italic_700};
   fontSize: 16px;
   marginLeft: 10px;
+  width: 240px;
 `
 
 export const BetGameAndPrice = styled.View`
