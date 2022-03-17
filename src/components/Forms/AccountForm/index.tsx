@@ -19,6 +19,7 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: yupResolver(updateSchema),
@@ -28,6 +29,7 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
     const response = await updateUser(updateData);
 
     if (response?.status === 200) {
+      reset();
       onUpdate();
     }
   };
