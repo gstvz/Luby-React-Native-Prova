@@ -14,6 +14,11 @@ export const cartSlice = createSlice({
     addGameToCart(state, action) {
       state.bets = [...state.bets, action.payload];
     },
+    removeGameFromCart(state, action){
+      state.bets = state.bets.filter((bet) => {
+        return JSON.stringify(bet.numbers) !== JSON.stringify(action.payload);
+      });
+    },
     calculateCartTotal(state, action) {
       const prevBets = [...state.bets];
       const newTotal = prevBets.map((bet) => {
