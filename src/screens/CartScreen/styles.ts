@@ -36,10 +36,13 @@ export const Cart = styled.View`
   borderTopRightRadius: 6px; 
   borderWidth: 1px;
   marginTop: 10px;
+  minHeight: 340px;
   padding: 10px;
+  width: 360px;
 `
 
 export const BetsWrapper = styled.View`
+  flex: 1;
   marginTop: 10px;
 `
 
@@ -115,6 +118,7 @@ export const SaveBetButton = styled.Pressable`
   flexDirection: row;
   justifyContent: center;
   padding: 16px;
+  width: 360px;
 `
 
 export const SaveBetButtonContent = styled.Text`  

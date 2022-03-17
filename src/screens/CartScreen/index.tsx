@@ -67,7 +67,9 @@ export const CartScreen = ({ navigation }: Props) => {
 
   return (
     <S.Container>      
-      <S.Content>
+      <S.Content contentContainerStyle={{
+        alignItems: "center"
+      }}>
         <Logo />
         <S.Cart>
           <S.Title>
