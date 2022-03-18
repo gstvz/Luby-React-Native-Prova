@@ -170,6 +170,7 @@ export const BetScreen = () => {
       })
     );
     dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [] }));
+    Alert.alert("Add to cart", "This game was added to the cart! 👌");
   };
 
   return (

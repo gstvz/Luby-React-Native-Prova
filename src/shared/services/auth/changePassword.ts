@@ -4,14 +4,14 @@ import { Alert } from "react-native";
 
 export const changePassword = async (newPassword: { password: string }) => {
   try {
-    Alert.alert("Resetting password...");
+    Alert.alert("Reset password", "Resetting password...");
     const resetToken = await AsyncStorage.getItem("resetToken");
     const token = JSON.parse(resetToken!);
 
     const response = await api.post(`reset/${token}`, newPassword);
 
     if(response.status === 200) {
-      Alert.alert("Password reset 👌");
+      Alert.alert("Reset password", "Password reset 👌");
     };
   
     return response;

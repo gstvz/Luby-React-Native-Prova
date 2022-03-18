@@ -13,7 +13,7 @@ export const registerUser = async (userData: UserData) => {
       .post("user/create", userData)
 
     if(response.status === 200) {
-      Alert.alert("User registered!");
+      Alert.alert("Register User", "User registered! 👌");
     }
 
     return response;

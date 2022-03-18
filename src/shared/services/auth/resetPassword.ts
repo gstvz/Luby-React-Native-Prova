@@ -4,11 +4,11 @@ import { Alert } from "react-native";
 
 export const resetPassword = async (userEmail: { email: string }) => {
   try {
-    Alert.alert("Sending link...")
+    Alert.alert("Reset password", "Sending link...")
     const response = await api.post("reset", userEmail);
 
     if(response.status === 200) {
-      Alert.alert("Link sent 👌");
+      Alert.alert("Reset password", "Link sent 👌");
     }
 
     AsyncStorage.setItem('resetToken', JSON.stringify(response.data.token));

@@ -11,7 +11,7 @@ export const updateUser = async (userData: UserData) => {
     const response = await api.put("/user/update", userData);
 
     if (response.status === 200) {
-      Alert.alert("User updated!");
+      Alert.alert("Update Account", "Account updated! 👌");
     }
 
     return response;
