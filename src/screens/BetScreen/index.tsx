@@ -142,6 +142,11 @@ export const BetScreen = () => {
   };
 
   const handleAddGameToCart = () => {
+    if(selectedNumbers.length === 0) {
+      Alert.alert("Add to cart", "You didn't select any numbers!");
+      return;
+    }
+    
     const sortedNumbers = sortArray(selectedNumbers);
     if (
       isGameAlreadyOnCart({
