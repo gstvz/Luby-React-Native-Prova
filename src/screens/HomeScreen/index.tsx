@@ -5,8 +5,10 @@ import { GamesButtons, GamesList, Logo } from "@components";
 import { GamesState, GameType, UserState } from "@shared/types";
 import { getGamesData } from "@store/games/thunk";
 import { getUserBets } from "@store/user/thunk";
+import { useIsFocused } from "@react-navigation/native";
 
 export const HomeScreen = () => {
+  const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const games = useSelector((state: GamesState) => state.games.types);
   const userBets = useSelector((state: UserState) => state.user.userBets);
@@ -17,11 +19,13 @@ export const HomeScreen = () => {
   }, []);
 
   useEffect(() => {
-    const params = selectedGames.length > 0 ?
-      `?type%5B%5D=${selectedGames.join("&type%5B%5D=")}`
-      : "";
-    dispatch(getUserBets(params));
-  }, [selectedGames]);
+    if(isFocused) {
+      const params = selectedGames.length > 0 ?
+        `?type%5B%5D=${selectedGames.join("&type%5B%5D=")}`
+        : "";
+      dispatch(getUserBets(params));
+    }
+  }, [isFocused, selectedGames]);
 
   const handleGameFilter = (game: GameType) => {
     const selectedGame = game.type;
