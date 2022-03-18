@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "../styles";
 import { resetSchema } from "@shared/schemas";
 import { resetPassword } from "@shared/services/auth";
+import { useState } from "react";
+import { useTheme } from "styled-components";
+import { ActivityIndicator } from "react-native";
 
 type Props = {
   onBackPress: (callback: Function) => void;
@@ -15,6 +18,8 @@ type Input = {
 };
 
 export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const theme = useTheme();
   const {
     control,
     handleSubmit,
@@ -25,6 +30,7 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
   });
 
   const handleReset: SubmitHandler<Input> = async (userEmail) => {
+    setIsLoading(!isLoading);
     const response = await resetPassword(userEmail);
     if (response?.status === 200) {
       onSendLink(reset);
@@ -50,12 +56,18 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
           <S.InvalidFormInput>{errors.email.message}</S.InvalidFormInput>
         )}
         <S.ActionContainer>
-          <S.ActionButton onPress={handleSubmit(handleReset)}>
-            <S.ActionButtonText primary>
-              Send link
-              <Ionicons name="arrow-forward" size={32} />
-            </S.ActionButtonText>
-          </S.ActionButton>
+          {isLoading ? (
+            <S.ActionButton disabled>
+              <ActivityIndicator size="large" color={theme.colors.action} />
+            </S.ActionButton>
+          ) : (
+            <S.ActionButton onPress={handleSubmit(handleReset)}>
+              <S.ActionButtonText primary>
+                Send link
+                <Ionicons name="arrow-forward" size={32} />
+              </S.ActionButtonText>
+            </S.ActionButton>
+          )}
         </S.ActionContainer>
       </S.Content>
       <S.ActionButton onPress={() => onBackPress(reset)}>

@@ -4,6 +4,9 @@ import { Ionicons } from "@expo/vector-icons";
 import * as S from "../styles";
 import { registerSchema } from "@shared/schemas";
 import { registerUser } from "@shared/services/user";
+import { useState } from "react";
+import { useTheme } from "styled-components";
+import { ActivityIndicator } from "react-native";
 
 type Props = {
   onBackPress: (callback: Function) => void;
@@ -17,6 +20,8 @@ type Inputs = {
 };
 
 export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const theme = useTheme();
   const {
     control,
     handleSubmit,
@@ -27,6 +32,7 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
   });
 
   const handleRegister: SubmitHandler<Inputs> = async (registerData) => {
+    setIsLoading(!isLoading);
     const response = await registerUser(registerData);
 
     if (response?.status === 200) {
@@ -82,12 +88,18 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
           <S.InvalidFormInput>{errors.password.message}</S.InvalidFormInput>
         )}
         <S.ActionContainer>
-          <S.ActionButton onPress={handleSubmit(handleRegister)}>
-            <S.ActionButtonText primary>
-              Register
-              <Ionicons name="arrow-forward" size={32} />
-            </S.ActionButtonText>
-          </S.ActionButton>
+          {isLoading ? (
+            <S.ActionButton disabled>
+              <ActivityIndicator size="large" color={theme.colors.action} />
+            </S.ActionButton>
+          ) : (
+            <S.ActionButton onPress={handleSubmit(handleRegister)}>
+              <S.ActionButtonText primary>
+                Register
+                <Ionicons name="arrow-forward" size={32} />
+              </S.ActionButtonText>
+            </S.ActionButton>
+          )}
         </S.ActionContainer>
       </S.Content>
       <S.ActionButton onPress={() => onBackPress(reset)}>

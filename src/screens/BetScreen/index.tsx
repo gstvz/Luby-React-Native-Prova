@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import * as S from "./styles";
@@ -11,6 +11,7 @@ import { getGamesData } from "@store/games/thunk";
 import { cartActions } from "@store/cart";
 
 export const BetScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const games = useSelector((state: GamesState) => state.games.types);
   const activeGame = useSelector((state: GamesState) => state.games.activeGame);
@@ -142,6 +143,7 @@ export const BetScreen = () => {
   };
 
   const handleAddGameToCart = () => {
+    setIsLoading(!isLoading);
     if(selectedNumbers.length === 0) {
       Alert.alert("Add to cart", "You didn't select any numbers!");
       return;
@@ -173,7 +175,14 @@ export const BetScreen = () => {
       })
     );
     dispatch(gamesActions.setSelectedNumbers({ selectedNumbers: [] }));
-    Alert.alert("Add to cart", "This game was added to the cart! 👌");
+    Alert.alert("Add to cart", "This game was added to the cart! 👌", [
+      {
+        text: "OK",
+        onPress: () => {
+          setIsLoading(!!isLoading);
+        },
+      },
+    ]);    
   };
 
   return (
@@ -208,6 +217,7 @@ export const BetScreen = () => {
           handleCompleteGame={handleCompleteGame}
           handleClearGame={handleClearGame}
           handleAddGameToCart={handleAddGameToCart}
+          isLoading={isLoading}
         />
       </S.Content>
     </S.Container>

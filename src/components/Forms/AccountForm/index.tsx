@@ -6,6 +6,9 @@ import { updateSchema } from "@shared/schemas";
 import { updateUser } from "@shared/services/user";
 import { UserState } from "@shared/types";
 import { useSelector } from "react-redux";
+import { ActivityIndicator } from "react-native";
+import { useState } from "react";
+import { useTheme } from "styled-components/native";
 
 type Props = {
   onBackPress: (callback: Function) => void;
@@ -18,6 +21,8 @@ type Inputs = {
 };
 
 export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const theme = useTheme();
   const user = useSelector((state: UserState) => state.user.user);
   const {
     control,
@@ -27,12 +32,13 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
   } = useForm<Inputs>({
     defaultValues: {
       name: user!.name,
-      email: user!.email
+      email: user!.email,
     },
     resolver: yupResolver(updateSchema),
   });
 
   const handleRegister: SubmitHandler<Inputs> = async (updateData) => {
+    setIsLoading(!isLoading);
     const response = await updateUser(updateData);
 
     if (response?.status === 200) {
@@ -73,12 +79,18 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
           <S.InvalidFormInput>{errors.email.message}</S.InvalidFormInput>
         )}
         <S.ActionContainer>
-          <S.ActionButton onPress={handleSubmit(handleRegister)}>
-            <S.ActionButtonText primary>
-              Update
-              <Ionicons name="arrow-forward" size={32} />
-            </S.ActionButtonText>
-          </S.ActionButton>
+          {isLoading ? (
+            <S.ActionButton disabled>
+              <ActivityIndicator size="large" color={theme.colors.action} />
+            </S.ActionButton>
+          ) : (
+            <S.ActionButton onPress={handleSubmit(handleRegister)}>
+              <S.ActionButtonText primary>
+                Update
+                <Ionicons name="arrow-forward" size={32} />
+              </S.ActionButtonText>
+            </S.ActionButton>
+          )}
         </S.ActionContainer>
       </S.Content>
       <S.ActionButton onPress={() => onBackPress(reset)}>

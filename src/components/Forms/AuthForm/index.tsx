@@ -5,6 +5,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "../styles";
 import { loginSchema } from "@shared/schemas";
 import { postUserData } from "@store/user/thunk";
+import { ActivityIndicator } from "react-native";
+import { useState } from "react";
+import { useTheme } from "styled-components/native";
 
 type Props = {
   onSignUpPress: (callback: Function) => void;
@@ -17,6 +20,8 @@ type LoginInputs = {
 };
 
 export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const theme = useTheme();
   const dispatch = useDispatch();
   const {
     control,
@@ -27,11 +32,10 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLogin: SubmitHandler<LoginInputs> = async (loginData) => {    
+  const handleLogin: SubmitHandler<LoginInputs> = async (loginData) => {
+    setIsLoading(!isLoading);
     dispatch(postUserData(loginData));
   };
-
-  
 
   return (
     <S.Container>
@@ -70,12 +74,18 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
           <S.ActionButton onPress={() => onForgotPress(reset)}>
             <S.PasswordButton>I forgot my password</S.PasswordButton>
           </S.ActionButton>
-          <S.ActionButton onPress={handleSubmit(handleLogin)}>
-            <S.ActionButtonText primary>
-              Log In
-              <Ionicons name="arrow-forward" size={32} />
-            </S.ActionButtonText>
-          </S.ActionButton>
+          {isLoading ? (
+            <S.ActionButton disabled>
+              <ActivityIndicator size="large" color={theme.colors.action} />
+            </S.ActionButton>
+          ) : (
+            <S.ActionButton onPress={handleSubmit(handleLogin)}>
+              <S.ActionButtonText primary>
+                Log In
+                <Ionicons name="arrow-forward" size={32} />
+              </S.ActionButtonText>
+            </S.ActionButton>
+          )}
         </S.ActionContainer>
       </S.Content>
       <S.ActionButton onPress={() => onSignUpPress(reset)}>

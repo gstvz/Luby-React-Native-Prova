@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { DrawerScreenProps } from "@react-navigation/drawer";
 import { useDispatch, useSelector } from "react-redux";
-import { Alert } from "react-native";
+import { ActivityIndicator, Alert } from "react-native";
 import * as S from "./styles";
 import { Logo } from "@components";
 import { CartState, GamesState } from "@shared/types";
@@ -10,6 +10,8 @@ import { formatNumbers, formatToBRL } from "@shared/helpers";
 import { newBet } from "@shared/services/bets";
 
 import { cartActions } from "@store/cart";
+import { useState } from "react";
+import { useTheme } from "styled-components";
 
 type RootStackParamList = {
   Home: undefined;
@@ -18,6 +20,8 @@ type RootStackParamList = {
 type Props = DrawerScreenProps<RootStackParamList, "Home">;
 
 export const CartScreen = ({ navigation }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const theme = useTheme();
   const dispatch = useDispatch();
   const cart = useSelector((state: CartState) => state.cart);
   const games = useSelector((state: GamesState) => state.games);
@@ -54,12 +58,21 @@ export const CartScreen = ({ navigation }: Props) => {
   };
 
   const handleSaveBet = async () => {
+    setIsLoading(!isLoading);
     if (cart.total < games.min_cart_value) {
       Alert.alert(
         "Save Bet",
-        `The cart hasnt reached the minimum value of ${formatToBRL(
+        `The cart hasn't reached the minimum value of ${formatToBRL(
           games.min_cart_value
-        )}!`
+        )}!`,
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              setIsLoading(!!isLoading);
+            },
+          },
+        ]
       );
       return;
     }
@@ -74,6 +87,7 @@ export const CartScreen = ({ navigation }: Props) => {
       navigation.jumpTo("Home");
       dispatch(cartActions.saveBet());
     }
+    setIsLoading(!!isLoading);
   };
 
   return (
@@ -137,12 +151,18 @@ export const CartScreen = ({ navigation }: Props) => {
             </S.CartTotalValue>
           </S.CartTotalWrapper>
         </S.Cart>
-        <S.SaveBetButton onPress={handleSaveBet}>
-          <S.SaveBetButtonContent>
-            Save
-            <Ionicons name="arrow-forward" size={32} />
-          </S.SaveBetButtonContent>
-        </S.SaveBetButton>
+        {isLoading ? (
+          <S.SaveBetButton disabled>
+            <ActivityIndicator size="large" color={theme.colors.action} />
+          </S.SaveBetButton>
+        ) : (
+          <S.SaveBetButton onPress={handleSaveBet}>
+            <S.SaveBetButtonContent>
+              Save
+              <Ionicons name="arrow-forward" size={32} />
+            </S.SaveBetButtonContent>
+          </S.SaveBetButton>
+        )}
       </S.Content>
     </S.Container>
   );

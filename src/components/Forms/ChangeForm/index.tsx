@@ -4,6 +4,9 @@ import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import * as S from "../styles";
 import { changeSchema } from "@shared/schemas";
 import { changePassword } from "@shared/services/auth";
+import { useState } from "react";
+import { useTheme } from "styled-components";
+import { ActivityIndicator } from "react-native";
 
 type Props = {
   onBackPress: (callback: Function) => void;
@@ -15,6 +18,8 @@ type Input = {
 };
 
 export const ChangeForm = ({ onBackPress, onReset }: Props) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const theme = useTheme();
   const {
     control,
     handleSubmit,
@@ -25,6 +30,7 @@ export const ChangeForm = ({ onBackPress, onReset }: Props) => {
   });
 
   const handleReset: SubmitHandler<Input> = async (newPassword) => {
+    setIsLoading(!isLoading);
     const response = await changePassword(newPassword);
     if (response?.status === 200) {
       onReset(reset);
@@ -50,12 +56,18 @@ export const ChangeForm = ({ onBackPress, onReset }: Props) => {
           <S.InvalidFormInput>{errors.password.message}</S.InvalidFormInput>
         )}
         <S.ActionContainer>
-          <S.ActionButton onPress={handleSubmit(handleReset)}>
-            <S.ActionButtonText primary>
-              Reset
-              <Ionicons name="arrow-forward" size={32} />
-            </S.ActionButtonText>
-          </S.ActionButton>
+          {isLoading ? (
+            <S.ActionButton disabled>
+              <ActivityIndicator size="large" color={theme.colors.action} />
+            </S.ActionButton>
+          ) : (
+            <S.ActionButton onPress={handleSubmit(handleReset)}>
+              <S.ActionButtonText primary>
+                Reset
+                <Ionicons name="arrow-forward" size={32} />
+              </S.ActionButtonText>
+            </S.ActionButton>
+          )}
         </S.ActionContainer>
       </S.Content>
       <S.ActionButton onPress={() => onBackPress(reset)}>
