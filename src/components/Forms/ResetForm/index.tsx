@@ -6,8 +6,8 @@ import { resetSchema } from "@shared/schemas";
 import { resetPassword } from "@shared/services/auth";
 
 type Props = {
-  onBackPress: () => void;
-  onSendLink: () => void;
+  onBackPress: (callback: Function) => void;
+  onSendLink: (callback: Function) => void;
 };
 
 type Input = {
@@ -18,6 +18,7 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Input>({
     resolver: yupResolver(resetSchema),
@@ -26,7 +27,7 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
   const handleReset: SubmitHandler<Input> = async (userEmail) => {
     const response = await resetPassword(userEmail);
     if (response?.status === 200) {
-      onSendLink();
+      onSendLink(reset);
     }
   };
 
@@ -57,7 +58,7 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton onPress={onBackPress}>
+      <S.ActionButton onPress={() => onBackPress(reset)}>
         <S.ActionButtonText titles>
           <Ionicons name="arrow-back" size={32} />
           Back

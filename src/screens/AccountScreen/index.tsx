@@ -9,7 +9,8 @@ type RootStackParamList = {
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export const AccountScreen = ({ navigation }: Props) => {
-  const handleBackNavigate = () => {
+  const handleBackNavigate = (callback: Function) => {
+    callback();
     navigation.goBack();
   };
 

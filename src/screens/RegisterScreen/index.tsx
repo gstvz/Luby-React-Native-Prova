@@ -9,11 +9,13 @@ type RootStackParamList = {
 type Props = NativeStackScreenProps<RootStackParamList, "Register">;
 
 export const RegisterScreen = ({ navigation }: Props) => {
-  const handleBackNavigate = () => {
+  const handleBackNavigate = (callback: Function) => {
+    callback();
     navigation.goBack();
   };
 
-  const handleRegisterNavigate = () => {
+  const handleRegisterNavigate = (callback: Function) => {
+    callback();
     navigation.popToTop();
   };
 

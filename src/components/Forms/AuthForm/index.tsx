@@ -7,8 +7,8 @@ import { loginSchema } from "@shared/schemas";
 import { postUserData } from "@store/user/thunk";
 
 type Props = {
-  onSignUpPress: () => void;
-  onForgotPress: () => void;
+  onSignUpPress: (callback: Function) => void;
+  onForgotPress: (callback: Function) => void;
 };
 
 type LoginInputs = {
@@ -21,14 +21,17 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<LoginInputs>({
     resolver: yupResolver(loginSchema),
   });
 
-  const handleLogin: SubmitHandler<LoginInputs> = async (loginData) => {
+  const handleLogin: SubmitHandler<LoginInputs> = async (loginData) => {    
     dispatch(postUserData(loginData));
   };
+
+  
 
   return (
     <S.Container>
@@ -64,7 +67,7 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
           <S.InvalidFormInput>{errors.password.message}</S.InvalidFormInput>
         )}
         <S.ActionContainer>
-          <S.ActionButton onPress={onForgotPress}>
+          <S.ActionButton onPress={() => onForgotPress(reset)}>
             <S.PasswordButton>I forgot my password</S.PasswordButton>
           </S.ActionButton>
           <S.ActionButton onPress={handleSubmit(handleLogin)}>
@@ -75,7 +78,7 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton onPress={onSignUpPress}>
+      <S.ActionButton onPress={() => onSignUpPress(reset)}>
         <S.ActionButtonText titles>
           Sign Up
           <Ionicons name="arrow-forward" size={32} />

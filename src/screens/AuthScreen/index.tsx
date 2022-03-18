@@ -12,12 +12,14 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Auth'>;
 
 export const AuthScreen = ({ navigation }: Props) => {
 
-  const handleSignUpNavigate = () => {
+  const handleSignUpNavigate = (callback: Function) => {
+    callback();
     navigation.navigate('Register')
   };
 
-  const handleResetNavigate = () => {
-    navigation.navigate('Reset')
+  const handleResetNavigate = (callback: Function) => {
+    callback();
+    navigation.navigate('Reset');
   };
 
   return (

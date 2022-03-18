@@ -6,8 +6,8 @@ import { registerSchema } from "@shared/schemas";
 import { registerUser } from "@shared/services/user";
 
 type Props = {
-  onBackPress: () => void;
-  onRegister: () => void;
+  onBackPress: (callback: Function) => void;
+  onRegister: (callback: Function) => void;
 };
 
 type Inputs = {
@@ -20,6 +20,7 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: yupResolver(registerSchema),
@@ -29,7 +30,7 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
     const response = await registerUser(registerData);
 
     if (response?.status === 200) {
-      onRegister();
+      onRegister(reset);
     }
   };
 
@@ -89,7 +90,7 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton onPress={onBackPress}>
+      <S.ActionButton onPress={() => onBackPress(reset)}>
         <S.ActionButtonText titles>
           <Ionicons name="arrow-back" size={32} />
           Back

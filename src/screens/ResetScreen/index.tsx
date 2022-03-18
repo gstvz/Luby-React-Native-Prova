@@ -10,11 +10,13 @@ type RootStackParamList = {
 type Props = NativeStackScreenProps<RootStackParamList, "Reset">;
 
 export const ResetScreen = ({ navigation }: Props) => {
-  const handleBackNavigate = () => {
+  const handleBackNavigate = (callback: Function) => {
+    callback();
     navigation.goBack();
   };
 
-  const handleSendLink = () => {
+  const handleSendLink = (callback: Function) => {
+    callback();
     navigation.navigate("Change");
   };
 

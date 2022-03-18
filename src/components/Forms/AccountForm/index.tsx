@@ -6,7 +6,7 @@ import { updateSchema } from "@shared/schemas";
 import { updateUser } from "@shared/services/user";
 
 type Props = {
-  onBackPress: () => void;
+  onBackPress: (callback: Function) => void;
   onUpdate: () => void;
 };
 
@@ -75,7 +75,7 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
           </S.ActionButton>
         </S.ActionContainer>
       </S.Content>
-      <S.ActionButton onPress={onBackPress}>
+      <S.ActionButton onPress={() => onBackPress(reset)}>
         <S.ActionButtonText titles>
           <Ionicons name="arrow-back" size={32} />
           Back
