@@ -145,6 +145,9 @@ export const BetScreen = () => {
     if(selectedNumbers.length === 0) {
       Alert.alert("Add to cart", "You didn't select any numbers!");
       return;
+    } else if(selectedNumbers.length < activeGame.max_number) {
+      Alert.alert("Add to cart", `You can still select ${activeGame.max_number - selectedNumbers.length} numbers!`);
+      return;
     }
     
     const sortedNumbers = sortArray(selectedNumbers);
