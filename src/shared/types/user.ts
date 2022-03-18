@@ -1,6 +1,7 @@
 export type UserData = {
   user: {
     id: number;
+    name: string;
     email: string;
     token: string;
     expires_at: string;

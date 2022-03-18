@@ -4,6 +4,8 @@ import { Ionicons } from "@expo/vector-icons";
 import * as S from "../styles";
 import { updateSchema } from "@shared/schemas";
 import { updateUser } from "@shared/services/user";
+import { UserState } from "@shared/types";
+import { useSelector } from "react-redux";
 
 type Props = {
   onBackPress: (callback: Function) => void;
@@ -16,12 +18,17 @@ type Inputs = {
 };
 
 export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
+  const user = useSelector((state: UserState) => state.user.user);
   const {
     control,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm<Inputs>({
+    defaultValues: {
+      name: user!.name,
+      email: user!.email
+    },
     resolver: yupResolver(updateSchema),
   });
 
@@ -29,7 +36,6 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
     const response = await updateUser(updateData);
 
     if (response?.status === 200) {
-      reset();
       onUpdate();
     }
   };

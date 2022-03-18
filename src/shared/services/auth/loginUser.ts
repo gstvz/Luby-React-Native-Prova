@@ -9,6 +9,7 @@ export const loginUser = async (loginData: LoginData) => {
     .then((res) => { 
       return {
         id: res.data.user.id,
+        name: res.data.user.name,
         email: res.data.user.email,
         token: res.data.token.token,
         expires_at: res.data.token.expires_at,

@@ -13,6 +13,7 @@ export const userSlice = createSlice({
     authenticateUser(state, action) {
       const user = {
         id: action.payload.id,
+        name: action.payload.name,
         email: action.payload.email,
         token: action.payload.token,
         expires_at: action.payload.expires_at,
