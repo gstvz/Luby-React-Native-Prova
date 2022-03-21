@@ -144,14 +144,44 @@ export const BetScreen = () => {
 
   const handleAddGameToCart = () => {
     setIsLoading(!isLoading);
-    if(selectedNumbers.length === 0) {
-      Alert.alert("Add to cart", "You didn't select any numbers!");
+    if (selectedNumbers.length === 0) {
+      Alert.alert(
+        "Add to cart",
+        "You didn't select any numbers!",
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              setIsLoading(false);
+            },
+          },
+        ],
+        {
+          cancelable: true,
+        }
+      );
       return;
-    } else if(selectedNumbers.length < activeGame.max_number) {
-      Alert.alert("Add to cart", `You can still select ${activeGame.max_number - selectedNumbers.length} numbers!`);
+    } else if (selectedNumbers.length < activeGame.max_number) {
+      Alert.alert(
+        "Add to cart",
+        `You can still select ${
+          activeGame.max_number - selectedNumbers.length
+        } number(s)!`,
+        [
+          {
+            text: "OK",
+            onPress: () => {
+              setIsLoading(false);
+            },
+          },
+        ],
+        {
+          cancelable: true,
+        }
+      );
       return;
     }
-    
+
     const sortedNumbers = sortArray(selectedNumbers);
     if (
       isGameAlreadyOnCart({
@@ -182,7 +212,7 @@ export const BetScreen = () => {
           setIsLoading(!!isLoading);
         },
       },
-    ]);    
+    ]);
   };
 
   return (
