@@ -7,11 +7,19 @@ import {
 import { useDispatch } from "react-redux";
 import { HomeScreen, BetScreen, CartScreen, AccountScreen } from "@screens";
 import { userActions } from "@store/user";
+import { gamesActions } from "@store/games";
+import { cartActions } from "@store/cart";
 
 const Drawer = createDrawerNavigator();
 
 export const AppDrawer = () => {
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(userActions.logoutUser());
+    dispatch(gamesActions.resetGamesState());
+    dispatch(cartActions.resetCartState());
+  }
 
   return (
     <Drawer.Navigator
@@ -24,7 +32,7 @@ export const AppDrawer = () => {
           <DrawerItemList {...props} />
           <DrawerItem
             label="Log out"
-            onPress={() => dispatch(userActions.logoutUser())}
+            onPress={handleLogout}
           />
         </DrawerContentScrollView>
       )}

@@ -31,6 +31,10 @@ export const gamesSlice = createSlice({
     setSelectedNumbers(state, action) {
       state.selectedNumbers = action.payload.selectedNumbers;
     },
+    resetGamesState(state) {
+      state.activeGame = state.types[0];
+      state.selectedNumbers = [];
+    }
   },
 });
 

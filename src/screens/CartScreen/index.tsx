@@ -85,7 +85,7 @@ export const CartScreen = ({ navigation }: Props) => {
 
     if (response?.status === 200) {
       navigation.jumpTo("Home");
-      dispatch(cartActions.saveBet());
+      dispatch(cartActions.resetCartState());
     }
     setIsLoading(!!isLoading);
   };
