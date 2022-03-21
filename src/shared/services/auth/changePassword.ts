@@ -15,7 +15,11 @@ export const changePassword = async (newPassword: { password: string }) => {
     };
   
     return response;
-  } catch (error) {
-    Alert.alert(error instanceof Error ? error.message : "Unknown error occurred!")
+  } catch (error: any) {
+    if(error.status === 404) {
+      Alert.alert("Reset Password", "User not found in our database!");
+    } else {
+      Alert.alert("Reset Password", "Something went wrong! Please, try again!");
+    }
   }
 };

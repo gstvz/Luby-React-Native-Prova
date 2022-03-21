@@ -14,7 +14,11 @@ export const resetPassword = async (userEmail: { email: string }) => {
     AsyncStorage.setItem('resetToken', JSON.stringify(response.data.token));
   
     return response;
-  } catch (error) {
-    Alert.alert(error instanceof Error ? error.message : "Unknown error occurred!")
+  } catch (error: any) {
+    if(error.status === 404) {
+      Alert.alert("Reset Password", "User not found in our database!");
+    } else {
+      Alert.alert("Reset Password", "Something went wrong! Please, try again!");
+    }
   }
 };

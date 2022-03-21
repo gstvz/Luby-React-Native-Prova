@@ -17,6 +17,6 @@ export const newBet = async (bets: Games) => {
 
     return response;
   } catch (error) {
-    Alert.alert(error instanceof Error ? error.message : "Unknown error occurred!")
+    Alert.alert("Cart", "Could not save the bet! Please, try again!");
   }
 };

@@ -6,6 +6,6 @@ export const listGames = async() => {
     const response = await api.get("cart_games");
     return response;
   } catch (error) {
-    Alert.alert(error instanceof Error ? error.message : "Unknown error occurred!")
+    Alert.alert("Bet", "Could not fetch the games info! Please, try reloading the screen!");
   }
 }

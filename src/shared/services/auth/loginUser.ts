@@ -14,14 +14,13 @@ export const loginUser = async (loginData: LoginData) => {
         token: res.data.token.token,
         expires_at: res.data.token.expires_at,
       }})
-    .catch((err) => {
-      if(err.response.status === 401) {
-        Alert.alert("Invalid email or password.");
-      } 
-    })
 
     return response;
-  } catch (error) {
-    Alert.alert(error instanceof Error ? error.message : "Unknown error occurred!")
+  } catch (error: any) {
+    if(error.status === 401) {
+      Alert.alert("User Login", "Invalid email or password!");
+    } else {
+      Alert.alert("User Login", "Something went wrong! Please, try again!");
+    }
   }
 };
