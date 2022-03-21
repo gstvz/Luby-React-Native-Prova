@@ -39,9 +39,9 @@ export const AccountForm = ({ onBackPress, onUpdate }: Props) => {
 
   const handleRegister: SubmitHandler<Inputs> = async (updateData) => {
     setIsLoading(!isLoading);
-    const response = await updateUser(updateData);
+    const response = await updateUser({ user: updateData, setIsLoading: setIsLoading });
 
-    if (response?.status === 200) {
+    if (response?.status === 200) {      
       onUpdate();
     }
   };

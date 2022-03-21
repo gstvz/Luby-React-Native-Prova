@@ -31,7 +31,7 @@ export const ResetForm = ({ onBackPress, onSendLink }: Props) => {
 
   const handleReset: SubmitHandler<Input> = async (userEmail) => {
     setIsLoading(!isLoading);
-    const response = await resetPassword(userEmail);
+    const response = await resetPassword({ userEmail: userEmail, setIsLoading: setIsLoading });
     if (response?.status === 200) {
       onSendLink(reset);
     }

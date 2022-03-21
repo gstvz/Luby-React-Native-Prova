@@ -31,7 +31,7 @@ export const ChangeForm = ({ onBackPress, onReset }: Props) => {
 
   const handleReset: SubmitHandler<Input> = async (newPassword) => {
     setIsLoading(!isLoading);
-    const response = await changePassword(newPassword);
+    const response = await changePassword({ newPassword: newPassword, setIsLoading: setIsLoading});
     if (response?.status === 200) {
       onReset(reset);
     }

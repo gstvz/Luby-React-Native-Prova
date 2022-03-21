@@ -4,9 +4,14 @@ import { listBet } from "@shared/services/bets";
 import { LoginData } from "@shared/types";
 import { userActions } from "./";
 
-export const postUserData = (loginData: LoginData) => {
+type PostUserDataProps = {
+  loginData: LoginData,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const postUserData = ({ loginData, setIsLoading }: PostUserDataProps) => {
   return async (dispatch: Function) => {
-    const userData = await loginUser(loginData);
+    const userData = await loginUser({ loginData: loginData, setIsLoading: setIsLoading});    
 
     if (userData) {
       dispatch(userActions.authenticateUser(userData));

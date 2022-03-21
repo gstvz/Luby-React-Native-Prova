@@ -34,7 +34,7 @@ export const AuthForm = ({ onSignUpPress, onForgotPress }: Props) => {
 
   const handleLogin: SubmitHandler<LoginInputs> = async (loginData) => {
     setIsLoading(!isLoading);
-    dispatch(postUserData(loginData));
+    dispatch(postUserData({ loginData: loginData, setIsLoading: setIsLoading}));
   };
 
   return (

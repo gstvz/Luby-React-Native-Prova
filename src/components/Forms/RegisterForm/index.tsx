@@ -33,7 +33,7 @@ export const RegisterForm = ({ onBackPress, onRegister }: Props) => {
 
   const handleRegister: SubmitHandler<Inputs> = async (registerData) => {
     setIsLoading(!isLoading);
-    const response = await registerUser(registerData);
+    const response = await registerUser({ user: registerData, setIsLoading: setIsLoading });
 
     if (response?.status === 200) {
       onRegister(reset);
